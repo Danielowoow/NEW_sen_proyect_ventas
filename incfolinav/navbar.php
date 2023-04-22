@@ -2,7 +2,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-navbar">
     <div class="container">
-        <a class="navbar-brand" href="http://localhost/SEN_proyect_ventas">Tienda en línea</a>
+        <a class="navbar-brand" href="./">Tienda en línea</a>
         <input type="checkbox" id="navbar-toggle" class="d-none">
         <div class="navbar-collapse">
             <ul class="navbar-nav me-auto">
@@ -24,6 +24,7 @@
                     </label>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="loginregis.php">Iniciar sesión/Registrarte</a></li>
+                        <li><a class="dropdown-item" href="perfilUser.php">Perfil</a></li>
                         <li><a class="dropdown-item" href="usuarios/mis_pedidos.php">Mis pedidos</a></li>
                         <li><a class="dropdown-item" href=../SEN_proyect_ventas/admin/admin.php>ADMIN</a></li>
                         <li><a class="dropdown-item" href="../salir.php">CERRAR SESION</a></li>

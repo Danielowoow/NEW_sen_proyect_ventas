@@ -1,6 +1,9 @@
+-- Crear la base de datos:
+-- 
 CREATE DATABASE new_sen_proyect_ventas;
 USE new_sen_proyect_ventas;
-
+-- ver las tablas 
+SHOW TABLES;
 -- --------------------------------------------------------
 CREATE TABLE administradores (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -11,6 +14,7 @@ CREATE TABLE administradores (
 --
 -- insertar datos para la tabla `administradores`
 --
+
 INSERT INTO administradores (
     correo, contraseña, nombre
 ) VALUES (
@@ -39,7 +43,8 @@ INSERT INTO categorias (nombre, descripcion) VALUES
 ('Impresoras y Escáneres', 'Categoría de impresoras y escáneres'),
 ('Almacenamiento', 'Categoría de dispositivos de almacenamiento'),
 ('Proyectores y Pantallas', 'Categoría de proyectores y pantallas');
--- --------------------------------------------------------
+-- ingresar mas categorías
+-- ------------------------------------------------------
 --
 -- Estructura de tabla para la tabla usuarios
 --

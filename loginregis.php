@@ -30,7 +30,7 @@
                   <button type="submit" class="btn solid"  id="login-in-btnR">INICIAR </button>  
               <p class="social-text">Regresar a la página principal</p>
               <div class="social-media">
-                <a href="index.php" class="social-icon">
+                <a href="./" class="social-icon">
                   <i class="fas fa-arrow-left"></i>
                 </a>
               </div>
@@ -65,7 +65,7 @@
               
               <p class="social-text">Regresar a la página principal</p>
               <div class="social-media">
-                <a href="index.php" class="social-icon">
+                <a href="./" class="social-icon">
                   <i class="fas fa-arrow-left"></i>
                 </a>
               </div>
