@@ -20,24 +20,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 /*=============== VARIABLES CSS ===============*/
 :root {
-  --header-height: 3.5rem;
+  --header-height: 1.5rem;
+  --header-width: 0.5rem;
   /*========== Colors ==========*/
-  --first-color: hsl(273, 97%, 66%);
-  --first-color-shape: hsl(253, 33%, 32%);
+  --first-color: hsl(205, 67%, 41%);
+  --first-color-shape: hsl(188, 100%, 49%);
   --title-color: hsl(273, 8%, 15%);
   --text-color: hsl(273, 4%, 45%);
   --body-color: hsl(273, 100%, 99%);
   --container-color: #fff;
   --title-color-dark: hsl(273, 83%, 98%);
-  --text-color-dark: hsl(273, 21%, 56%);
-  --container-color-dark: hsl(273, 80%, 14%);
+  --text-color-dark: hsl(191, 60%, 26%);
+  --container-color-dark: hsl(244, 89%, 4%);
   /*========== Font and typography ==========*/
   --body-font: 'Poppins', sans-serif;
   --big-font-size: 1.5rem;
   --normal-font-size: .938rem;
   --small-font-size: .813rem;
   /*========== z index ==========*/
-  --z-fixed: 100;
+  --z-fixed: 1000;
 }
 
 @media screen and (min-width: 968px) {
@@ -106,7 +107,7 @@ img {
   position: fixed;
   top: 0;
   left: 0;
-  width: 82%;
+  width: 85%;
   height: 100vh;
 }
 
@@ -206,6 +207,7 @@ img {
 
 .header__nav {
   height: var(--header-height);
+    
   display: flex;
   justify-content: space-between;
   align-items: center;
