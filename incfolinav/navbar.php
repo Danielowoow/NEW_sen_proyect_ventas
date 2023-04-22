@@ -17,10 +17,8 @@
                 <button class="btn btn-outline-success" type="submit">Buscar</button>
             </form>
             <ul class="navbar-nav">
+
                 <li class="nav-item dropdown">
-                <li class="nav-item">
-                    <a class="nav-link" href="productos/index.php">Nosotros</a>
-                </li>
                     <label class="nav-link" for="navbarDropdown">
                         <i class="bi bi-person"></i>
                     </label>
@@ -34,6 +32,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="productos/carrito.php">
                         <i class="bi bi-cart"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="productos/carrito.php">
+                        Nosotros
                     </a>
                 </li>
             </ul>
