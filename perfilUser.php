@@ -1,3 +1,21 @@
+<?php
+session_start();
+include "db_conectar/conexion.php";
+
+include "includes/funciones_usuarios.php";
+
+if (!isset($_SESSION['id_usuario'])) {
+    header("Location: loginregis.php");
+    exit();
+}
+
+$usuario = obtenerUsuarioPorId($_SESSION['id_usuario']);
+
+if (!is_array($usuario)) {
+    echo "Error: usuario no encontrado";
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,7 +63,7 @@
                     </div>
 
                     <span class="nav__greeting">Este es tu perfil.</span>
-                    <h1 class="nav__name">nombre <br> apellido</h1>
+                    <h1 class="nav__name"><?php echo $usuario['nombre']; ?> <br> <?php echo $usuario['apellido_paterno']; ?></h1>
                 </div>
 
                 <ul class="nav__list">
@@ -114,12 +132,129 @@
             <!--=============== HOME ===============-->
             <section class="section section__height container" id="perfil">
                 <h1>PERFIL</h1>
-                
+                <div class="contper">
+                <div class="containerPERFIL">
+                <h2>Bienvenido, <?php echo $usuario['nombre']; ?></h2>
+                <ul>
+                    <li><strong>Correo:</strong> <?php echo $usuario['correo']; ?></li>
+                    <li><strong>DNI:</strong> <?php echo $usuario['dni']; ?></li>
+                    <li><strong>Nombre:</strong> <?php echo $usuario['nombre']; ?></li>
+                    <li><strong>Apellido Paterno:</strong> <?php echo $usuario['apellido_paterno']; ?></li>
+                    <li><strong>Apellido Materno:</strong> <?php echo $usuario['apellido_materno']; ?></li>
+                    <li><strong>Fecha de nacimiento:</strong> <?php echo $usuario['fecha_nacimiento']; ?></li>
+                    <li><strong>Dirección:</strong> <?php echo $usuario['direccion']; ?></li>
+                    <li><strong>Ciudad:</strong> <?php echo $usuario['ciudad']; ?></li>
+                    <li><strong>Contraseña:</strong> ********</li>
+                </ul>   
+    </div>
+    <div class="IMGperfil">
+        
+
+    </div>
+    </div>
+                <style>
+.section__height {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.section__height h1 {
+  font-size: 2em;
+  margin-right: 1em;
+  margin-top: 0; /* agrega esta línea para mover el h1 hacia arriba */
+  align-self: flex-start;
+
+}
+
+h1 {
+  font-size: 3.5rem; /* aumenta el tamaño de la fuente */
+  margin-bottom: 2rem;
+}
+
+.contper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ 
+}
+
+.containerPERFIL {
+  margin-right: 25rem;
+  font-size: 1.39rem; /* aumenta el tamaño de la fuente */
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 0.7rem;
+}
+
+.IMGperfil {
+  width: 300px; /* aumenta el tamaño de la imagen */
+  height: 400px; /* aumenta el tamaño de la imagen */
+  border-radius: 10px; /* cambia el borde redondeado */
+  background-color: gray;
+  margin-left: 2rem; /* agrega un margen a la izquierda */
+}
+                </style>
             </section>
 
-            <!--=============== ABOUT ===============-->
+            <!--=============== EDITAR ===============-->
             <section class="section section__height container" id="editar-perfil">
                 <h1>EDITAR PERFIL</h1>
+                <form action="procesos/actualizarUsuario.php" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" id="nombre" class="form-control" value="<?php echo htmlspecialchars($usuario['nombre']); ?>">
+            </div>
+
+            <div class="form-group">
+                <label for="apellido_paterno">Apellido Paterno:</label>
+                <input type="text" name="apellido_paterno" id="apellido_paterno" class="form-control" value="<?php echo htmlspecialchars($usuario['apellido_paterno']); ?>">
+            </div>
+
+            <div class="form-group">
+                <label for="apellido_materno">Apellido Materno:</label>
+                <input type="text" name="apellido_materno" id="apellido_materno" class="form-control" value="<?php echo htmlspecialchars($usuario['apellido_materno']); ?>">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo:</label>
+                <input type="email" name="email" id="email" class="form-control" value="<?php echo htmlspecialchars($usuario['correo']); ?>">
+            </div>
+
+            <div class="form-group">
+                <label for="dni">DNI:</label>
+                <input type="text" name="dni" id="dni" class="form-control" placeholder="DNI" pattern="\d{8}" title="Por favor, ingrese un DNI válido de 8 dígitos." maxlength="8" value="<?php echo htmlspecialchars($usuario['dni']); ?>">
+            </div>
+
+            <div class="form-group">
+                <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+                <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control" value="<?php echo htmlspecialchars($usuario['fecha_nacimiento']); ?>">
+            </div>
+
+            <div class="form-group">
+                <label for="direccion">Dirección:</label>
+                <input type="text" name="direccion" id="direccion" class="form-control" value="<?php echo htmlspecialchars($usuario['direccion']); ?>">
+            </div>
+
+            <div class="form-group">
+                <label for="ciudad">Ciudad:</label>
+                <input type="text" name="ciudad" id="ciudad" class="form-control" value="<?php echo htmlspecialchars($usuario['ciudad']); ?>">
+            </div>
+            <div class="form-group">
+            <label for="imagen">Imagen</label>
+            <input type="file" name="imagen"id="imagen" class="form-control" value="<?php echo htmlspecialchars($usuario['imagen']); ?>">
+            </div>
+        
+        <button type="submit" class="btn btn-primary">Actualizar perfil</button>
+    </form>
                 
             </section>
 

@@ -42,7 +42,19 @@ function loginUsuario($email, $password) {
         return false;
     }
 }
-function actualizarUsuario($id_usuario, $nombre, $apellido_paterno, $apellido_materno, $email, $dni, $fecha_nacimiento, $direccion, $ciudad, $hashed_password, $imagen) {
+function obtenerUsuarioPorId($id_usuario) {
+    global $conexion;
+
+    $query = "SELECT * FROM usuarios WHERE id = '$id_usuario'";
+    $resultado = mysqli_query($conexion, $query);
+
+    if (mysqli_num_rows($resultado) > 0) {
+        return mysqli_fetch_assoc($resultado);
+    } else {
+        return false;
+    }
+}
+function actualizarUsuario($id_usuario, $nombre, $apellido_paterno, $apellido_materno, $email, $dni, $fecha_nacimiento, $direccion, $ciudad, $imagen) {
     global $conexion;
 
     // Si la fecha de nacimiento está vacía, establece su valor en NULL
@@ -52,15 +64,22 @@ function actualizarUsuario($id_usuario, $nombre, $apellido_paterno, $apellido_ma
         // Asegúrate de que la fecha esté entre comillas simples para que sea tratada como una cadena en la consulta SQL
         $fecha_nacimiento = "'$fecha_nacimiento'";
     }
-    $ruta_imagen = '';
-if ($imagen['error'] === UPLOAD_ERR_OK) {
-  $nombre_imagen = uniqid() . '_' . $imagen['name'];
-  $ruta_imagen = 'imagenes/perfil' . $nombre_imagen;
-  $ruta_absoluta = 'C:\xampp\htdocs\SEN_proyect_ventas\\' . $ruta_imagen;
-  move_uploaded_file($imagen['tmp_name'], $ruta_absoluta);
-}
 
-    $query = "UPDATE usuarios SET nombre = '$nombre', apellido_paterno = '$apellido_paterno', apellido_materno = '$apellido_materno', correo = '$email', dni = '$dni', fecha_nacimiento = $fecha_nacimiento, direccion = '$direccion', ciudad = '$ciudad', contraseña = '$hashed_password', imagen = '$ruta_imagen' WHERE id = $id_usuario";
+    if (!empty($imagen) && $imagen['error'] === UPLOAD_ERR_OK) {
+        // Obtener la extensión del archivo de imagen
+        $extension = pathinfo($imagen['name'], PATHINFO_EXTENSION);
+        // Generar un nombre único para el archivo de imagen
+        $nombre_archivo = uniqid() . '.' . $extension;
+        // Mover el archivo de imagen a la carpeta de imágenes
+        $ruta_absoluta = 'C:/xampp/htdocs/NEW_sen_proyect_ventas/imagenes/perfil/';
+        $ruta_imagen = $ruta_absoluta . $nombre_archivo;
+        move_uploaded_file($imagen['tmp_name'], $ruta_imagen);
+        
+    } else {
+        $ruta_imagen = NULL;
+    }
+
+    $query = "UPDATE usuarios SET nombre = '$nombre', apellido_paterno = '$apellido_paterno', apellido_materno = '$apellido_materno', correo = '$email', dni = '$dni', fecha_nacimiento = $fecha_nacimiento, direccion = '$direccion', ciudad = '$ciudad', imagen = '$ruta_imagen' WHERE id = $id_usuario";
 
     if (mysqli_query($conexion, $query)) {
         return true;
