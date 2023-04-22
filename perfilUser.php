@@ -59,7 +59,7 @@ if (!is_array($usuario)) {
                 <div class="nav__data">
                     <div class="nav__mask">
                         <!-- Change your profile picture -->
-                        <img src="assets/img/perfil.png" alt="" class="nav__img">
+                        <img src="<?= 'C:/xampp/htdocs/NEW_sen_proyect_ventas/imagenes/perfil' . htmlspecialchars($usuario['imagen']) ?>" alt="<?= htmlspecialchars($usuario['imagen']) ?>" style="max-width: 80px; max-height: 80px;">
                     </div>
 
                     <span class="nav__greeting">Este es tu perfil.</span>
@@ -149,7 +149,7 @@ if (!is_array($usuario)) {
     </div>
     <div class="IMGperfil">
         
-
+    <img src="../<?= htmlspecialchars($usuario['imagen']) ?>" alt="<?= htmlspecialchars($usuario['imagen']) ?>" style="max-width: 100px; max-height: 100px;">
     </div>
     </div>
                 <style>
@@ -208,7 +208,7 @@ li {
             <!--=============== EDITAR ===============-->
             <section class="section section__height container" id="editar-perfil">
                 <h1>EDITAR PERFIL</h1>
-                <form action="procesos/actualizarUsuario.php" method="post" enctype="multipart/form-data">
+                <form action="procesos/actualizarUsuario.php" method="post" enctype="multipart/form-data" id="editarPerfilform">
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
                 <input type="text" name="nombre" id="nombre" class="form-control" value="<?php echo htmlspecialchars($usuario['nombre']); ?>">
@@ -255,7 +255,31 @@ li {
         
         <button type="submit" class="btn btn-primary">Actualizar perfil</button>
     </form>
-                
+                <script>
+                    document.getElementById("editarPerfilform").addEventListener("submit", function (event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    fetch("procesos/actualizarUsuario.php", {
+        method: "POST",
+        body: formData,
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        if (data.status === "success") {
+            alert(data.message);
+            // También puedes reiniciar el formulario aquí si es necesario
+            window.location.href = "perfilUser.php";
+        } else {
+            alert(data.message);
+        }
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+        alert("Error, usuario registrado, cambie el DNI o correo.");
+    });
+}); 
+                </script>
             </section>
 
             <!--=============== PORTFOLIO ===============-->

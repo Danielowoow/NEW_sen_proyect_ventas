@@ -3,6 +3,8 @@ session_start();
 include "../db_conectar/conexion.php";
 include "../includes/funciones_usuarios.php";
 
+header('Content-Type: application/json');
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id_usuario = $_SESSION['id_usuario'];
     $usuario = obtenerUsuarioPorId($id_usuario);
@@ -22,15 +24,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     
     
-
-
-if(actualizarUsuario($id_usuario, $nombre, $apellido_paterno, $apellido_materno, $email, $dni, $fecha_nacimiento, $direccion, $ciudad, $imagen)){
-    //echo $id_usuario, $nombre, $apellido_paterno, $apellido_materno, $email, $dni, $fecha_nacimiento, $direccion, $ciudad, $imagen;
-    header("Location: https://www.youtube.com");
-    //exit();
-    
-    } else {
-        $mensaje_error = "Error al agregar el producto.";
+    if(actualizarUsuario($id_usuario, $nombre, $apellido_paterno, $apellido_materno, $email, $dni, $fecha_nacimiento, $direccion, $ciudad, $imagen)){
+        echo json_encode(['status' => 'success', 'message' => 'Usuario actualizado exitosamente.']);
+    } else{
+        echo json_encode(['status' => 'error', 'message' => 'Error actualizar usuario.']);
     }
+
 
 }
