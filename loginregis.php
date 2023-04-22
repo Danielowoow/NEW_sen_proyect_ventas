@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>INICIAR</title>
-    <?php include 'incfolinav/link.php'; ?>
     <link rel="stylesheet" type="text/css" href="css/loginstyle.css" />
     <script
       src="https://kit.fontawesome.com/64d58efce2.js"
@@ -13,6 +12,7 @@
   
   </head>
   <body>
+    
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
@@ -28,6 +28,12 @@
             </div>
                 <a href="https://wa.me/51931998025?text=Olvidé%20mi%20contraseña.">¿Te olvidaste tu contraseña?</a>
             <input type="submit" value="INICIAR" class="btn solid" />
+            <p class="social-text">Regresar a la página principal</p>
+            <div class="social-media">
+              <a href="index.php" class="social-icon">
+                <i class="fas fa-arrow-left"></i>
+              </a>
+            </div>
           </form>
 
 
@@ -58,6 +64,12 @@
             <label for="terms">Acepto los <a href="https://wa.me/51931998025?text=TERMINOS%20Y%20CONDICIONES" target="_blank">términos y condiciones</a></label>
           </div>
             <input type="submit" value="REGISTRAR" class="btn solid" />
+            <p class="social-text">Regresar a la página principal</p>
+            <div class="social-media">
+              <a href="index.php" class="social-icon">
+                <i class="fas fa-arrow-left"></i>
+              </a>
+            </div>
           </form>
         </div>
       </div>

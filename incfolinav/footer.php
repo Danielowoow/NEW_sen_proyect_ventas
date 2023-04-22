@@ -1,160 +1,168 @@
-<footer>
-  <div>
-    <div>
-      <h5>Suscríbete a nuestras promociones</h5>
-      <p>Ingresa tu correo electrónico para recibir las mejores ofertas</p>
-      <form action="subscribe.php" method="post">
-        <div>
-          <input type="email" placeholder="Correo electrónico" required>
-          <button type="submit">Suscribirse</button>
-        </div>
-      </form>
-    </div>
-    <div>
-      <h5>Contáctanos</h5>
-      <p>Chatea con nosotros<br>
-      Te atendemos las 24hrs</p>
-      <p>Escríbenos:<br>
-      Estamos para ayudarte<br>
-      QosqoMarket9989@jijija.pe</p>
-      <p>Llámanos<br>
-      Venta Telefónica 931998025<br>
-      De lunes a domingo de 8:00am a 8:00pm</p>
-    </div>
-    <div>
-      <div>
-        <h5>Secciones</h5>
-        <div>
-          <button type="button">Nosotros</button>
-          <button type="button">Extra Garantía</button>
-          <button type="button">Nuestros servicios</button>
-          <button type="button">Venta empresa</button>
-          <button type="button">Trabaja con nosotros</button>
-        </div>
-      </div>
-      <div>
-        <h5>Atención al cliente</h5>
-        <div>
-          <p>Atención al cliente</p>
-          <ul>
-            <li><a href='#'>Preguntas frecuentes</a></li>
-            <li><a href='#'>Cambios y devoluciones</a></li>
-            <li><a href='#'>Términos y condiciones de compra</a></li>
-            <li><a href='#'>Politica de privacidad</a></li>
-            <li><a href='#'>Contáctanos</a></li>
-          </ul>
-        </div>
-      </div>
-      <div>
-        <h5>Otros</h5>
-        <ul>
-          <li>Síguenos en
-          <ul>
-            <li><a href="https://www.senati.edu.pe">Facebook</a></li>
-            <li><a href="https://www.senati.edu.pe">Twitter</a></li>
-            <li><a href="https://www.senati.edu.pe">Instagram</a></li>
-            <li><a href="https://www.senati.edu.pe">Youtube</a></li>
-          </ul>
-          </li>
-          <li><a href='#'>Libro de reclamaciones</a></li>
-        </ul>
-        <h5>Métodos de pago</h5>
-        <ul>
-          <li>MASTERCARD</li>
-          <li>VISA</li>
-          <li>DINERS</li>
-          <li>AMEX</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div>
-    <p>© 2023 - Qosqo Market. Todos los derechos reservados.</p>
-  </div>
-  <style>
-    body {
-    background: rgb(34,193,195);
-    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(190,21,50,1) 100%);
-    text-align: left;
-  }
-.btn-neon{
-    position: relative;
-    display: inline-block;
-    padding: 6px 12px;
-    color: #da1c1c;
-    letter-spacing: 4px;
-    text-decoration: none;
-    font-size: 8px;
-    overflow: hidden;
-    transition: 0.2s;
-    background: rgb(131,58,180);
-    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(87,82,80,1) 0%, rgba(252,225,69,1) 0%, rgba(253,66,29,1) 100%);
+<footer class="bg-light mt-auto py-3">
+    <div class="container">
+        <div class="row">
+            <!-- Suscripción -->
+            <div class="col-md-4">
+                <h5>Suscríbete a nuestras promociones</h5>
+                <p>Ingresa tu correo electrónico para recibir las mejores ofertas</p>
+                <form action="subscribe.php" method="post">
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Correo electrónico" required>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">Suscribirse</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Contacto -->
+            <div class="col-md-4">
+                <h5>Contáctanos</h5>
+                <p>Chatea con nosotros<br>
+                Te atendemos las 24hrs</p>
+                <p>Escríbenos:<br>
+                Estamos para ayudarte<br>
+                QosqoMarket9989@jijija.pe</p>
+                <p>Llámanos<br>
+                Venta Telefónica 931998025<br>
+                De lunes a domingo de 8:00am a 8:00pm</p>
+                <p>Visítanos<br>
+                
+            </div>
+
+            <!-- Secciones -->
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5>Secciones</h5>
+                        <div class="btn-group-vertical">
+                          <button type="button" class="btn btn-link">Nosotros</button>
+                          <button type="button" class="btn btn-link">Extra Garantía</button>
+                          <button type="button" class="btn btn-link">Nuestros servicios</button>
+                          <button type="button" class="btn btn-link">Venta empresa</button>
+                          <button type="button" class="btn btn-link">Trabaja con nosotros</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                      <h5>Atención al cliente</h5>
+                      <div class="dropdown">
+                        <p>Atención al cliente</p>
+                        <ul>
+                          <li><a href='#'>Preguntas frecuentes</a></li>
+                          <li><a href='#'>Cambios y devoluciones</a></li>
+                          <li><a href='#'>Términos y condiciones de compra</a></li>
+                          <li><a href='#'>Politica de privacidad</a></li>
+                          <li><a href='#'>Contáctanos</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <h5>Otros</h5>
+                      <ul>
+                        <li>Síguenos en
+                        <ul class="redes-sociales vdk">
+    <li>
+      <a class="mdi mdi-facebook" href="https://www.senati.edu.pe"></a>
+    </li>
+    <li>
+      <a class="mdi mdi-twitter" href="https://www.senati.edu.pe"></a>
+    </li>
+    <li>
+      <a class="mdi mdi-instagram" href="https://www.senati.edu.pe"></a>
+    </li>
+    <li>
+      <a class="mdi mdi-youtube" href="https://www.senati.edu.pe"></a>
+    </li>
+  </ul>
+</li>
+<li><a href='#'>Libro de reclamaciones</a></li>
+</ul>
+<h5>Métodos de pago</h5>
+<ul class="items-lk metodos">
+  <li class="mdi mdi-mastercard">MASTERCARD<i class="fab fa-cc-mastercard"></i></li>
+  <li class="mdi mdi-visa">VISA<i class="fab fa-cc-visa"></i></li>
+  <li class="mdi mdi-diners">DINERS<i class="fab fa-cc-diners-club"></i></li>
+  <li class="mdi mdi-amex">AMEX<i class="fab fa-cc-amex"></i></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Copyright -->
+<div class="row mt-3">
+<div class="col-md-12 text-center">
+<p>© 2023 - Qosqo Market    . Todos los derechos reservados.</p>
+</div>
+</div>
+</div>
+<style>
+  .dropdown {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+.dropdown ul {
+display: none;
+position: absolute;
+background-color: #f9f9f9;
+min-width: 160px;
+box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+padding: 12px 16px;
+z-index: 1;
 }
 
-.btn-neon:hover{
-    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(190,21,50,1) 100%);
-    box-shadow: 0 0 10px rgba(190,21,50,1), 0 0 40px rgba(190,21,50,1), 0 0 80px rgba(190,21,50,1);
-    transition-delay: 1s;
+.dropdown:hover ul {
+display: block;
+}
+.dropdown p {
+margin: 0;
+padding: 0;
 }
 
-.btn-neon span{
-    position: absolute;
-    display: block;
+.dropdown ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+border-radius: 4px;
 }
 
-#span1{
-    top: 0;
-    left: 100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent,#a945c7);
+.dropdown ul li {
+padding: 8px 16px;
+transition: background-color 0.2s;
 }
 
-.btn-neon:hover #span1{
-    left: 100%;
-    transition: 1s;
+.dropdown ul li:hover {
+background-color: #f1f1f1;
 }
 
-#span3{
-    bottom: 0;
-    right: 100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(270deg, transparent,#a945c7);
+.dropdown ul li a {
+text-decoration: none;
+color: #333;
+display: block;
 }
 
-.btn-neon:hover #span3{
-    right: 100%;
-    transition: 1s;
-    transition-delay: 0.5s;
+.dropdown ul li a:hover {
+color: #007bff;
 }
 
-#span2{
-    top: -100%;
-    right: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(180deg,transparent,#a945c7);
+.dropdown ul li.active {
+background-color: #007bff;
 }
 
-.btn-neon:hover #span2{
-    top: 100%;
-    transition: 1s;
-    transition-delay: 0.25s;
+.dropdown ul li.active a {
+color: #fff;
 }
 
-#span4{
-    bottom: -100%;
-    left: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(360deg,transparent,#a945c7);
+.btn-link {
+text-decoration: none;
+color: #007bff;
+padding: 0;
 }
 
-.btn-neon:hover #span4{
-    bottom: 100%;
-    transition: 1s;
-    transition-delay: 0.75s;
+.btn-link:hover {
+color: #0056b3;
+text-decoration: underline;
 }
-  </style>
+
+</style>
 </footer>
