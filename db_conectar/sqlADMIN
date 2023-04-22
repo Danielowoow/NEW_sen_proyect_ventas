@@ -1,0 +1,89 @@
+<?php 
+
+class consultasAdminSQL {
+    private $conexion;
+
+    public function __construct($connection) {
+        $this->conexion = $connection;
+    }
+
+    // Agregar producto
+    public function agregarProducto($precio, $modelo, $marca, $stock, $nombre, $descripcion, $imagen, $categoria_id) {
+        $sql = "INSERT INTO productos (precio, modelo, marca, stock, nombre, descripcion, imagen, categoria_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bind_param("dssisssi", $precio, $modelo, $marca, $stock, $nombre, $descripcion, $imagen, $categoria_id);
+        $stmt->execute();
+    }
+
+    // Buscar producto
+    public function buscarProducto($nombre) {
+        $sql = "SELECT * FROM productos WHERE nombre LIKE ?";
+        $stmt = $this->conexion->prepare($sql);
+        $searchTerm = "%" . $nombre . "%";
+        $stmt->bind_param("s", $searchTerm);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    // Ver todos los productos
+    public function verProductos() {
+        $sql = "SELECT * FROM productos";
+        $result = $this->conexion->query($sql);
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    // Borrar producto
+    public function borrarProducto($id) {
+        $sql = "DELETE FROM productos WHERE id = ?";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+    }
+
+    // Editar producto
+    public function editarProducto($id, $precio, $modelo, $marca, $stock, $nombre, $descripcion, $imagen, $categoria_id) {
+        $sql = "UPDATE productos SET precio = ?, modelo = ?, marca = ?, stock = ?, nombre = ?, descripcion = ?, imagen = ?, categoria_id = ? WHERE id = ?";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bind_param("dssisssii", $precio, $modelo, $marca, $stock, $nombre, $descripcion, $imagen, $categoria_id, $id);
+        $stmt->execute();
+    }
+
+    // Buscar usuarios
+    public function buscarUsuarios($nombre) {
+        $sql = "SELECT * FROM usuarios WHERE nombre LIKE ?";
+        $stmt = $this->conexion->prepare($sql);
+        $searchTerm = "%" . $nombre . "%";
+        $stmt->bind_param("s", $searchTerm);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    // Ver usuario
+    public function verUsuario($id) {
+        $sql = "SELECT * FROM usuarios WHERE id = ?";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
+
+    // Editar usuario
+    public function editarUsuario($id, $correo, $contraseña, $dni, $nombre, $apellido_paterno, $apellido_materno, $fecha_nacimiento, $direccion, $ciudad, $imagen) {
+        $sql = "UPDATE usuarios SET correo = ?, contraseña = ?, dni = ?, nombre = ?, apellido_paterno = ?, apellido_materno = ?, fecha_nacimiento = ?, direccion = ?, ciudad = ?, imagen = ? WHERE id = ?";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bind_param("ssssssssssi", $correo, $contraseña, $dni, $nombre, $apellido_paterno, $apellido_materno, $fecha_nacimiento, $direccion, $ciudad, $imagen, $id);
+        $stmt->execute();
+    }
+
+    // Eliminar usuario
+    public function eliminarUsuario($id) {
+        $sql = "DELETE FROM usuarios WHERE id = ?";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+    }
+}
+?>

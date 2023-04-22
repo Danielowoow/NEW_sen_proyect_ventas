@@ -3,16 +3,13 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-navbar">
     <div class="container">
         <a class="navbar-brand" href="http://localhost/SEN_proyect_ventas">Tienda en línea</a>
-        <label for="navbar-toggle" class="navbar-toggler-icon" id="navbar-toggle-label"></label>
         <input type="checkbox" id="navbar-toggle" class="d-none">
         <div class="navbar-collapse">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="productos/index.php">Productos</a>
+                    <a class="nav-link" href="productos/index.php">.</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="blog/index.php">Blog</a>
-                </li>
+   
             </ul>
             <form class="d-flex me-4" action="productos/resultados_busqueda.php" method="post">
 
@@ -21,12 +18,14 @@
             </form>
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
+                <li class="nav-item">
+                    <a class="nav-link" href="productos/index.php">Nosotros</a>
+                </li>
                     <label class="nav-link" for="navbarDropdown">
                         <i class="bi bi-person"></i>
                     </label>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="loginregis.php">Iniciar sesión/Registrarte</a></li>
-                        <li><a class="dropdown-item" href="../SEN_proyect_ventas/usuarios/perfil.php">Mi perfil</a></li>
                         <li><a class="dropdown-item" href="usuarios/mis_pedidos.php">Mis pedidos</a></li>
                         <li><a class="dropdown-item" href=../SEN_proyect_ventas/admin/admin.php>ADMIN</a></li>
                         <li><a class="dropdown-item" href="../salir.php">CERRAR SESION</a></li>
