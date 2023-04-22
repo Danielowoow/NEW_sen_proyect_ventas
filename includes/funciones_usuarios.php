@@ -65,21 +65,28 @@ function actualizarUsuario($id_usuario, $nombre, $apellido_paterno, $apellido_ma
         $fecha_nacimiento = "'$fecha_nacimiento'";
     }
 
+    $actualizar_imagen = false;
+
     if (!empty($imagen) && $imagen['error'] === UPLOAD_ERR_OK) {
         // Obtener la extensión del archivo de imagen
         $extension = pathinfo($imagen['name'], PATHINFO_EXTENSION);
         // Generar un nombre único para el archivo de imagen
         $nombre_archivo = uniqid() . '.' . $extension;
+        // Ruta relativa para guardar en la base de datos
+        $ruta_relativa = 'imagenes/perfil/' . $nombre_archivo;
+        // Ruta absoluta para mover el archivo
+        $ruta_absoluta = 'C:/xampp/htdocs/NEW_sen_proyect_ventas/' . $ruta_relativa;
         // Mover el archivo de imagen a la carpeta de imágenes
-        $ruta_absoluta = 'C:/xampp/htdocs/NEW_sen_proyect_ventas/imagenes/perfil/';
-        $ruta_imagen = $ruta_absoluta . $nombre_archivo;
-        move_uploaded_file($imagen['tmp_name'], $ruta_imagen);
-        
-    } else {
-        $ruta_imagen = NULL;
+        move_uploaded_file($imagen['tmp_name'], $ruta_absoluta);
+        $actualizar_imagen = true;
     }
 
-    $query = "UPDATE usuarios SET nombre = '$nombre', apellido_paterno = '$apellido_paterno', apellido_materno = '$apellido_materno', correo = '$email', dni = '$dni', fecha_nacimiento = $fecha_nacimiento, direccion = '$direccion', ciudad = '$ciudad', imagen = '$ruta_imagen' WHERE id = $id_usuario";
+    // Si se proporciona una imagen nueva, actualiza el campo imagen en la consulta
+    if ($actualizar_imagen) {
+        $query = "UPDATE usuarios SET nombre = '$nombre', apellido_paterno = '$apellido_paterno', apellido_materno = '$apellido_materno', correo = '$email', dni = '$dni', fecha_nacimiento = $fecha_nacimiento, direccion = '$direccion', ciudad = '$ciudad', imagen = '$ruta_relativa' WHERE id = $id_usuario";
+    } else {
+        $query = "UPDATE usuarios SET nombre = '$nombre', apellido_paterno = '$apellido_paterno', apellido_materno = '$apellido_materno', correo = '$email', dni = '$dni', fecha_nacimiento = $fecha_nacimiento, direccion = '$direccion', ciudad = '$ciudad' WHERE id = $id_usuario";
+    }
 
     if (mysqli_query($conexion, $query)) {
         return true;

@@ -59,7 +59,20 @@ if (!is_array($usuario)) {
                 <div class="nav__data">
                     <div class="nav__mask">
                         <!-- Change your profile picture -->
-                        <img src="<?= 'C:/xampp/htdocs/NEW_sen_proyect_ventas/imagenes/perfil' . htmlspecialchars($usuario['imagen']) ?>" alt="<?= htmlspecialchars($usuario['imagen']) ?>" style="max-width: 80px; max-height: 80px;">
+                        <img src="<?= htmlspecialchars($usuario['imagen']) ?>" style="max-width: 80px; max-height: 80px;">
+                     <style>
+                        .nav__mask {
+  width: 130px;
+  height: auto;
+  background: linear-gradient(224deg, #a22fe9 -2%, #ddaafe 97%);
+  border-radius: 1.5rem;
+  overflow: hidden; 
+  display: flex; 
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 1rem; 
+}
+                     </style>   
                     </div>
 
                     <span class="nav__greeting">Este es tu perfil.</span>
@@ -147,9 +160,8 @@ if (!is_array($usuario)) {
                     <li><strong>Contraseña:</strong> ********</li>
                 </ul>   
     </div>
-    <div class="IMGperfil">
-        
-    <img src="../<?= htmlspecialchars($usuario['imagen']) ?>" alt="<?= htmlspecialchars($usuario['imagen']) ?>" style="max-width: 100px; max-height: 100px;">
+    <div class="IMGperfil" style="display: flex; justify-content: center; align-items: center;">
+    <img src="<?= htmlspecialchars($usuario['imagen']) ?>" style="max-width: 300px; max-height: 400px; width: auto; height: auto; object-fit: cover;">
     </div>
     </div>
                 <style>
@@ -196,8 +208,8 @@ li {
 }
 
 .IMGperfil {
-  width: 300px; /* aumenta el tamaño de la imagen */
-  height: 400px; /* aumenta el tamaño de la imagen */
+  width: auto; /* aumenta el tamaño de la imagen */
+  height: auto; /* aumenta el tamaño de la imagen */
   border-radius: 10px; /* cambia el borde redondeado */
   background-color: gray;
   margin-left: 2rem; /* agrega un margen a la izquierda */
