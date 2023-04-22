@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Agregar el nuevo usuario a la base de datos
     if (agregarUsuario($dni, $nombre, $email, $password)) {
-        echo json_encode(['status' => 'success', 'message' => 'Usuario registrado exitosamente.']);
+        echo json_encode(['status' => 'success', 'message' => 'Usuario registrado exitosamente, ahora inicie sesión.']);
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Error al registrar el usuario.']);
     }
