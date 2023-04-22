@@ -42,4 +42,3 @@ function loginUsuario($email, $password) {
         return false;
     }
 }
-?>

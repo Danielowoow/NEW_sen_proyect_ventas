@@ -16,7 +16,7 @@
       <div class="container">
         <div class="forms-container">
           <div class="signin-signup">
-            <form action="procesos/login.php" metod="post"class="sign-in-form">
+            <form action="procesos/login.php" method="post"class="sign-in-form"id="login-form">
               <h2 class="title">INICIAR SESIÓN</h2>
               <div class="input-field">
                 <i class="fas fa-user"></i>
@@ -27,7 +27,7 @@
                 <input type="password" name="password" placeholder="Contraseña" />
               </div>
                   <a href="https://wa.me/51931998025?text=Olvidé%20mi%20contraseña.">¿Te olvidaste tu contraseña?</a>
-              <input type="submit" value="INICIAR" class="btn solid" />
+                  <button type="submit" class="btn solid"  id="login-in-btnR">INICIAR </button>  
               <p class="social-text">Regresar a la página principal</p>
               <div class="social-media">
                 <a href="index.php" class="social-icon">
@@ -35,8 +35,6 @@
                 </a>
               </div>
             </form>
-
-
             <form action="procesos/registroUsuario.php" method="post" class="sign-up-form" id="register-form">
               <h2 class="title">REGISTRATE</h2>
               <div class="input-field">
@@ -73,6 +71,30 @@
               </div>
             </form>
             <script>
+document.getElementById("login-form").addEventListener("submit", function (event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    fetch("procesos/login.php", {
+        method: "POST",
+        body: formData,
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        if (data.status === "success") {
+            alert(data.message);
+            // También puedes reiniciar el formulario aquí si es necesario
+            window.location.href = "index.php";
+        } else {
+            alert(data.message);
+        }
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+        alert("Ocurrió un error inesperado.");
+    });
+}); 
+
 document.getElementById("register-form").addEventListener("submit", function (event) {
     event.preventDefault();
     const formData = new FormData(event.target);

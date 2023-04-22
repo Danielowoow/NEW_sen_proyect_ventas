@@ -1,21 +1,25 @@
-
 <?php
-session_start();
+    session_start();
 
-include "..db_conectar/conexion.php";
-include "../includes/funciones_usuario.php";
+    include "../db_conectar/conexion.php";
+    include "../includes/funciones_usuarios.php";
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
 
-    if (loginUsuario($email, $password)) {
-        echo "entro exitosamente";
-        echo "dale click";
-        echo '<li><a class="dropdown-item" tipe= "button" href="../usuarios/perfil.php">pagina de inicio</a></li>';
-    } else {
-        echo "Credenciales incorrectas";
-        echo '<li><a class="button" href="../SEN_proyect_ventas/login.php">Intenar de nuevo</a></li>';
+    header('Content-Type: application/json');
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+    
+        if (loginUsuario($email, $password)) {
+            echo json_encode(['status' => 'success', 'message' => 'Inicio de sesión exitoso. Volver a la pagina principal.']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Contraseña o usuario incorrecta.']);
+            exit;
+        }
     }
-}
-?>
+    ?>
+  
+
+
+
