@@ -16,7 +16,7 @@
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
-          <form action="usuarios/login.php" metod="post"class="sign-in-form">
+          <form action="procesos/login.php" metod="post"class="sign-in-form">
             <h2 class="title">INICIAR SESIÓN</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
@@ -37,19 +37,19 @@
           </form>
 
 
-          <form action="usuarios/registro.php" metod="post" class="sign-up-form">
+          <form action="procesos/registroUsuario.php" method="post" class="sign-up-form" id="register-form">
             <h2 class="title">REGISTRATE</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="DNI" required/>
+              <input type="text" name="dni" id="dni"  placeholder="DNI" pattern="\d{8}" title="Por favor, ingrese un DNI válido de 8 dígitos." maxlength="8"/>
             </div>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Nombre" required/>
+              <input type="text" name="nombre" placeholder="Nombre" required/>
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Correo" required/>
+              <input type="email" name="email" placeholder="Correo" required/>
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
@@ -63,7 +63,8 @@
             <input type="checkbox" name="terms" id="terms" required>
             <label for="terms">Acepto los <a href="https://wa.me/51931998025?text=TERMINOS%20Y%20CONDICIONES" target="_blank">términos y condiciones</a></label>
           </div>
-            <input type="submit" value="REGISTRAR" class="btn solid" />
+          <button type="submit" class="btn solid" >REGISTRAR </button>
+            
             <p class="social-text">Regresar a la página principal</p>
             <div class="social-media">
               <a href="index.php" class="social-icon">
@@ -71,6 +72,31 @@
               </a>
             </div>
           </form>
+          <script>
+    document.getElementById("register-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+
+        fetch("procesos/registroUsuario.php", {
+            method: "POST",
+            body: formData,
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.status === "success") {
+                alert(data.message);
+                // Redirigir al usuario a la página de inicio de sesión
+                window.location.href = "loginregis.php";
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+            alert("Ocurrió un error inesperado.");
+        });
+    });
+</script>
         </div>
       </div>
       <div class="panels-container">

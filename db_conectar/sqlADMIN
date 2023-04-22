@@ -1,5 +1,5 @@
 <?php 
-
+//include 'db_conectar/conexion.php' ;
 class consultasAdminSQL {
     private $conexion;
 
