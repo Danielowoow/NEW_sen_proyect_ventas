@@ -27,6 +27,7 @@ if (!is_array($usuario)) {
 <link rel="stylesheet" href="css/bootstrap.css">    
 <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">  
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
         <!--=============== BOXICONS ===============-->
         <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 
@@ -400,21 +401,95 @@ li {
             <!--=============== cambio de contraseña ===============-->
             <section class="section section__height container" id="cam-contra">
     <h1>CAMBIAR CONTRASEÑA</h1>
-    <form>
-        <div>
-            <label for="contraseña-actual">Contraseña actual:</label>
-            <input type="password" id="contraseña-actual" name="contraseña-actual" required>
-        </div>
-        <div>
-            <label for="nueva-contraseña">Nueva contraseña:</label>
-            <input type="password" id="nueva-contraseña" name="nueva-contraseña" required>
-        </div>
-        <div>
-            <label for="confirmar-contraseña">Confirmar nueva contraseña:</label>
-            <input type="password" id="confirmar-contraseña" name="confirmar-contraseña" required>
-        </div>
-        <button type="submit">Cambiar contraseña</button>
-    </form>
+    <form action="procesos/login.php" method="post"class="sign-in-form"id="login-form">
+              <h2 class="title">CAMBIAR CONTRASEÑA</h2>
+              <div class="input-field">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="contraseña" placeholder="CONTRASEÑA ACTUAL" />
+              </div>
+              <div class="input-field">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" placeholder="NUEVA CONTRASEÑA" />
+              </div>
+              <div class="input-field">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" placeholder="REPETIR CONTRASEÑA" />
+              </div>
+                  <a href="https://wa.me/51931998025?text=Olvidé%20mi%20contraseña.">¿Te olvidaste tu contraseña?</a>
+                  <button type="submit" class="btn solid"  id="login-in-btnR">CAMBIAR </button>  
+            </form>
+            <STYLE>
+                /* Estilos específicos para la sección #cam-contra */
+#cam-contra .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#cam-contra .section {
+    width: 400px;
+    padding: 40px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#cam-contra h1, #cam-contra h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#cam-contra .input-field {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+#cam-contra .input-field i {
+    position: absolute;
+    left: 15px;
+    top: 10px;
+    color: #555;
+}
+
+#cam-contra .input-field input {
+    width: 100%;
+    padding: 10px 30px;
+    border: 1px solid #999;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+}
+
+#cam-contra a {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #555;
+    text-decoration: none;
+}
+
+#cam-contra a:hover {
+    color: #888;
+}
+
+#cam-contra .btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+}
+
+#cam-contra .solid {
+    background-color: #4caf50;
+}
+
+#cam-contra .solid:hover {
+    background-color: #3f9d40;
+}
+            </STYLE>
 </section>
 
             <!--=============== CONTACT ===============-->
