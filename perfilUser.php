@@ -57,23 +57,24 @@ if (!is_array($usuario)) {
                 </div>
                 
                 <div class="nav__data">
-                    <div class="nav__mask">
-                        <!-- Change your profile picture -->
-                        <img src="<?= htmlspecialchars($usuario['imagen']) ?>" style="max-width: 80px; max-height: 80px;">
-                     <style>
-                        .nav__mask {
-  width: 130px;
-  height: auto;
-  background: linear-gradient(224deg, #a22fe9 -2%, #ddaafe 97%);
-  border-radius: 1.5rem;
-  overflow: hidden; 
-  display: flex; 
-  justify-content: center;
-  align-items: flex-end;
-  margin-bottom: 1rem; 
-}
-                     </style>   
-                    </div>
+<div class="nav__mask">
+  <!-- Change your profile picture -->
+  <img src="<?= htmlspecialchars($usuario['imagen']) ?>" style="width: 350px; height: autopx; object-fit: cover;">
+  <style>
+    .nav__mask {
+      width: 600;
+      height: auto;
+      background: linear-gradient(224deg, #a22fe9 -2%, #ddaafe 97%);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      margin-bottom: 1rem;
+    }
+  </style>
+</div>
+
 
                     <span class="nav__greeting">Este es tu perfil.</span>
                     <h1 class="nav__name"><?php echo $usuario['nombre']; ?> <br> <?php echo $usuario['apellido_paterno']; ?></h1>
@@ -154,7 +155,7 @@ if (!is_array($usuario)) {
                     <li><strong>Nombre:</strong> <?php echo $usuario['nombre']; ?></li>
                     <li><strong>Apellido Paterno:</strong> <?php echo $usuario['apellido_paterno']; ?></li>
                     <li><strong>Apellido Materno:</strong> <?php echo $usuario['apellido_materno']; ?></li>
-                    <li><strong>Fecha de nacimiento:</strong> <?php echo $usuario['fecha_nacimiento']; ?></li>
+                    <li><strong>Fecha de nacimiento:</strong> <br><?php echo $usuario['fecha_nacimiento']; ?></li>
                     <li><strong>Dirección:</strong> <?php echo $usuario['direccion']; ?></li>
                     <li><strong>Ciudad:</strong> <?php echo $usuario['ciudad']; ?></li>
                     <li><strong>Contraseña:</strong> ********</li>
@@ -173,7 +174,7 @@ if (!is_array($usuario)) {
   align-items: center;
 }
 .section__height h1 {
-  font-size: 2em;
+  font-size: 3em;
   margin-right: 1em;
   margin-top: 0; /* agrega esta línea para mover el h1 hacia arriba */
   align-self: flex-start;
@@ -181,8 +182,8 @@ if (!is_array($usuario)) {
 }
 
 h1 {
-  font-size: 3.5rem; /* aumenta el tamaño de la fuente */
-  margin-bottom: 2rem;
+  font-size: 3.1rem; /* aumenta el tamaño de la fuente */
+  margin-bottom: -0.1rem;
 }
 
 .contper {
@@ -193,8 +194,8 @@ h1 {
 }
 
 .containerPERFIL {
-  margin-right: 25rem;
-  font-size: 1.39rem; /* aumenta el tamaño de la fuente */
+  margin-right: 22rem;
+  font-size: 1.4rem; /* aumenta el tamaño de la fuente */
 }
 
 ul {
@@ -218,9 +219,10 @@ li {
             </section>
 
             <!--=============== EDITAR ===============-->
-            <section class="section section__height container" id="editar-perfil">
+            <section class="section section__height container editar-perfil" id="editar-perfil">
                 <h1>EDITAR PERFIL</h1>
                 <form action="procesos/actualizarUsuario.php" method="post" enctype="multipart/form-data" id="editarPerfilform">
+                <div class="form-container">
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
                 <input type="text" name="nombre" id="nombre" class="form-control" value="<?php echo htmlspecialchars($usuario['nombre']); ?>">
@@ -260,10 +262,13 @@ li {
                 <label for="ciudad">Ciudad:</label>
                 <input type="text" name="ciudad" id="ciudad" class="form-control" value="<?php echo htmlspecialchars($usuario['ciudad']); ?>">
             </div>
-            <div class="form-group">
+            <div class="form-group full-width">
+            <p>Cargar imagenes de perfil exclusivamente*</p>
             <label for="imagen">Imagen</label>
             <input type="file" name="imagen"id="imagen" class="form-control" value="<?php echo htmlspecialchars($usuario['imagen']); ?>">
             </div>
+            </div>
+
         
         <button type="submit" class="btn btn-primary">Actualizar perfil</button>
     </form>
@@ -292,6 +297,98 @@ li {
     });
 }); 
                 </script>
+                <style>
+.editar-perfil {
+        background-color: #f8f9fa;
+        padding: 0rem;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+    }
+
+    .editar-perfil h1 {
+        margin-bottom: 1.5rem;
+        font-size: 2rem;
+        color: #333;
+    }
+
+    .editar-perfil .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .editar-perfil .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .editar-perfil .form-control {
+        display: block;
+        width: 100%;
+        padding: 0.5rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .editar-perfil .form-control:focus {
+        color: #495057;
+        background-color: #fff;
+        border-color: #80bdff;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    .editar-perfil .btn {
+        display: inline-block;
+        font-weight: 400;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        user-select: none;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: 0.25rem;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .editar-perfil .btn-primary {
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .editar-perfil .btn-primary:hover {
+        color: #fff;
+        background-color: #0069d9;
+        border-color: #0062cc;
+    }
+
+    .editar-perfil .btn-primary:focus {
+        color: #fff;
+        background-color: #0069d9;
+        border-color: #0062cc;
+        box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+    }    
+    .editar-perfil .form-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.9rem;
+    }
+
+    .editar-perfil .form-group.full-width {
+        grid-column: 1 / -1;
+    }
+
+                </style>
             </section>
 
             <!--=============== PORTFOLIO ===============-->
@@ -300,11 +397,25 @@ li {
                 
             </section>
 
-            <!--=============== SKILLS ===============-->
+            <!--=============== cambio de contraseña ===============-->
             <section class="section section__height container" id="cam-contra">
-                <h1>CAMBIAR CONTRASEÑA</h1>
-                
-            </section>
+    <h1>CAMBIAR CONTRASEÑA</h1>
+    <form>
+        <div>
+            <label for="contraseña-actual">Contraseña actual:</label>
+            <input type="password" id="contraseña-actual" name="contraseña-actual" required>
+        </div>
+        <div>
+            <label for="nueva-contraseña">Nueva contraseña:</label>
+            <input type="password" id="nueva-contraseña" name="nueva-contraseña" required>
+        </div>
+        <div>
+            <label for="confirmar-contraseña">Confirmar nueva contraseña:</label>
+            <input type="password" id="confirmar-contraseña" name="confirmar-contraseña" required>
+        </div>
+        <button type="submit">Cambiar contraseña</button>
+    </form>
+</section>
 
             <!--=============== CONTACT ===============-->
             <section class="section section__height container" id="cont">
