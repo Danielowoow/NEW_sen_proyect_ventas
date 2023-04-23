@@ -1,3 +1,15 @@
+<?php
+session_start();
+include "db_conectar/conexion.php";
+include "includes/funciones_usuarios.php";
+
+// Si el usuario ya ha iniciado sesión, redirigirlo a la página de inicio
+if (isset($_SESSION['id_usuario'])) {
+    header("Location: perfilUser.php");
+    exit();
+}
+?>
+
   <!DOCTYPE html>
   <html lang="en">
     <head>
@@ -84,7 +96,7 @@ document.getElementById("login-form").addEventListener("submit", function (event
         if (data.status === "success") {
             alert(data.message);
             // También puedes reiniciar el formulario aquí si es necesario
-            window.location.href = "index.php";
+            window.location.href = "perfilUser.php";
         } else {
             alert(data.message);
         }

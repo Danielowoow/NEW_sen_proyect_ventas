@@ -401,95 +401,132 @@ li {
             <!--=============== cambio de contraseña ===============-->
             <section class="section section__height container" id="cam-contra">
     <h1>CAMBIAR CONTRASEÑA</h1>
-    <form action="procesos/login.php" method="post"class="sign-in-form"id="login-form">
+    <form action="procesos/actualizarContraUser.php" method="post"class="sign-in-form"id="contranew-form">
               <h2 class="title">CAMBIAR CONTRASEÑA</h2>
               <div class="input-field">
-                <i class="fas fa-lock"></i>
-                <input type="password" name="contraseña" placeholder="CONTRASEÑA ACTUAL" />
+                <i class="bx bx-lock"></i>
+                <input type="password" name="password_actual" id="password_actual"placeholder="CONTRASEÑA ACTUAL" />
               </div>
               <div class="input-field">
-                <i class="fas fa-lock"></i>
-                <input type="password" name="password" placeholder="NUEVA CONTRASEÑA" />
+                <i class="bx bx-lock"></i>
+                <input type="password" name="nueva_password" id="nueva_password"placeholder="NUEVA CONTRASEÑA" />
               </div>
               <div class="input-field">
-                <i class="fas fa-lock"></i>
-                <input type="password" name="password" placeholder="REPETIR CONTRASEÑA" />
+                <i class="bx bx-lock"></i>
+                <input type="password" name="confirmar_password" id="confirmar_password" placeholder="REPETIR CONTRASEÑA" />
               </div>
+              
                   <a href="https://wa.me/51931998025?text=Olvidé%20mi%20contraseña.">¿Te olvidaste tu contraseña?</a>
+                  <div class="campo">
                   <button type="submit" class="btn solid"  id="login-in-btnR">CAMBIAR </button>  
+                  </div>
             </form>
             <STYLE>
                 /* Estilos específicos para la sección #cam-contra */
-#cam-contra .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+.input-field {
+  max-width: 380px;
+  width: 100%;
+  background-color: #f0f0f0;
+  margin: 10px 0;
+  height: 55px;
+  border-radius: 55px;
+  display: grid;
+  grid-template-columns: 15% 85%;
+  padding: 0 0.4rem;
+  position: relative;
+  
+}
+.input-field i {
+  text-align: center;
+  line-height: 55px;
+  color: #acacac;
+  transition: 0.5s;
+  font-size: 1.1rem;
+}
+.input-field input {
+  background: none;
+  outline: none;
+  border: none;
+  line-height: 1;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #333;
 }
 
-#cam-contra .section {
-    width: 400px;
-    padding: 40px;
-    background-color: #f5f5f5;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.input-field input::placeholder {
+  color: #aaa;
+  font-weight: 500;
+}
+.social-text {
+  padding: 0.7rem 0;
+  font-size: 1rem;
+}
+.social-media {
+  display: flex;
+  justify-content: center;
+}
+.social-icon {
+  height: 46px;
+  width: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0.45rem;
+  color: #333;
+  border-radius: 50%;
+  border: 1px solid #333;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: 0.3s;
+}
+.social-icon:hover {
+  color: #4481eb;
+  border-color: #4481eb;
+}
+.btn {
+  
+  background-color: #5995fd;
+  border: none;
+  outline: none;
+  color: #fff;
+  text-transform: uppercase;    
+  cursor: pointer;
+  transition: 0.5s;
 }
 
-#cam-contra h1, #cam-contra h2 {
-    text-align: center;
-    margin-bottom: 30px;
+.btn:hover {
+  background-color: #4d84e2;
 }
 
-#cam-contra .input-field {
-    position: relative;
-    margin-bottom: 25px;
-}
 
-#cam-contra .input-field i {
-    position: absolute;
-    left: 15px;
-    top: 10px;
-    color: #555;
-}
-
-#cam-contra .input-field input {
-    width: 100%;
-    padding: 10px 30px;
-    border: 1px solid #999;
-    border-radius: 5px;
-    font-size: 16px;
-    outline: none;
-}
-
-#cam-contra a {
-    display: inline-block;
-    margin-bottom: 20px;
-    color: #555;
-    text-decoration: none;
-}
-
-#cam-contra a:hover {
-    color: #888;
-}
-
-#cam-contra .btn {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #fff;
-    cursor: pointer;
-}
-
-#cam-contra .solid {
-    background-color: #4caf50;
-}
-
-#cam-contra .solid:hover {
-    background-color: #3f9d40;
-}
             </STYLE>
+            <script>
+                document.getElementById("contranew-form").addEventListener("submit", function (event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    fetch("procesos/actualizarContraUser.php", {
+        method: "POST",
+        body: formData,
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        if (data.status === "success") {
+            alert(data.message);
+            const sign_in_btn = document.querySelector("#sign-in-btnR");
+            const container = document.querySelector(".container");
+            container.classList.remove("sign-up-mode");
+            // También puedes reiniciar el formulario aquí si es necesario
+        } else {
+            alert(data.message);
+        }
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+        alert("Ocurrió un error inesperado.");
+    });
+});
+            </script>
 </section>
 
             <!--=============== CONTACT ===============-->

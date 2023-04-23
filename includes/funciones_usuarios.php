@@ -95,3 +95,20 @@ function actualizarUsuario($id_usuario, $nombre, $apellido_paterno, $apellido_ma
         return false;
     }
 }
+// Función para cambiar la contraseña de un usuario, primero comprobar la contraseña anterior y despues hacer la nueva contraseaña
+function cambiarContra($id_usuario, $hashed_password) {
+    global $conexion;
+
+
+
+    $query = "UPDATE usuarios SET  contraseña = '$hashed_password' WHERE id = $id_usuario";
+
+    if (mysqli_query($conexion, $query)) {
+        return true;
+    } else {
+        echo "Error al actualizar el usuario: " . mysqli_error($conexion);
+        return false;
+    }
+}
+
+
