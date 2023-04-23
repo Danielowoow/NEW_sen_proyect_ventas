@@ -24,30 +24,14 @@ if (!is_array($usuario)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="Shortcut Icon" type="image/x-icon" href="assets/icons/logo.ico" />
-<link rel="stylesheet" href="css/bootstrap.css">    
-<link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">  
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/bootstrap.css">    
 
         <!--=============== BOXICONS ===============-->
         <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 
         <!--=============== CSS ===============-->
         <link rel="stylesheet" href="css/perfilstyle.css">
-
-
-<script src="js/bootstrap.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-   
-<script src="js/jquery.min.js"></script>
-<!--<script src="js/bootstrap.min.js"></script> -->
-<!--<script src="js/autohidingnavbar.min.js"></script>-->
-<script src="js/main.js"></script>
-<script src="js/carrito.js"></script>
 <body>
-    <?php
-    //include 'incfolinav/navbar.php';
-    ?>
         <!--=============== NAV ===============-->
         <nav class="nav" id="nav">
             <div class="nav__menu container" id="nav-menu">
@@ -89,7 +73,7 @@ if (!is_array($usuario)) {
                     </li>
                     <li class="nav__item">
                         <a href="#editar-perfil" class="nav__link">
-                            <i class='bi bi-pencil'></i> EDITAR PERFIL
+                            <i class='bx bx-pencil'></i> EDITAR PERFIL
                         </a>
                     </li>
                     <li class="nav__item">
@@ -104,7 +88,7 @@ if (!is_array($usuario)) {
                     </li>
                     <li class="nav__item">
                         <a href="#cont" class="nav__link">
-                            <i class='bx bx-message-square-detail'></i> CONTÁCTANOS
+                            <i class='bx bx-support'></i> CONTÁCTANOS
                         </a>
                     </li>
                 </ul>
