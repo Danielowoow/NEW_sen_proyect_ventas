@@ -30,4 +30,30 @@ function agregarCategoria($nombre, $descripcion) {
     $stmt->execute();
     $stmt->close();
   }
-
+function borrar_categoria($id_categoria) {
+    include '../db_conectar/conexion.php';
+    global $conexion;
+    $stmt = $conexion->prepare("DELETE FROM categorias WHERE id = ?");
+    $stmt->bind_param("i", $id_categoria);
+    $stmt->execute();
+    $stmt->close();
+  }
+  function obtenerTodasCategorias() {
+    include '../db_conectar/conexion.php';
+    global $conexion;
+  
+    $consulta = "SELECT * FROM categorias ORDER BY nombre ASC";
+  
+    $resultado = mysqli_query($conexion, $consulta);
+  
+    if (!$resultado) {
+        die('Error en la consulta: ' . mysqli_error($conexion));
+    }
+  
+    $categorias = array();
+    while ($categoria = mysqli_fetch_assoc($resultado)) {
+        $categorias[] = $categoria;
+    }
+  
+    return $categorias;
+  }

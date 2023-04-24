@@ -137,13 +137,97 @@ $admin_logged_in = mysqli_fetch_assoc($resultado);
     <section id="agregar-producto" class="agregarproducto">
               <div class="agregarcategoria">
     <h2>Agregar nueva categoría</h2>
-    <form action="procesosAdmin/agrcategorias.php" method="post">
+    <form action="procesosAdmin/agrcategorias.php" method="post" id="agrcategoriaform">
       <label for="nombre">Nombre:</label>
       <input type="text" id="nombre" name="nombre" required>
       <label for="descripcion">Descripción:</label>
       <textarea id="descripcion" name="descripcion"></textarea>
       <button type="submit" name="agregar_categoria">Agregar categoría</button>
+
     </form>
+  <center>
+    <button name="borrar_categoria" id="borrar_categoria" style="font-size: 1.2rem; padding: 0.5rem; border-radius: 5px; border: none; background-color: red; color: #fff; cursor: pointer; transition: all 0.2s ease-in-out;">Borrar categoría</button>
+  </center>
+
+
+<script>
+  document.getElementById("borrar_categoria").addEventListener("click", function (event) {
+    event.preventDefault();
+
+    // Obtener la lista de categorías
+    fetch("procesosAdmin/obtenercategorias.php")
+      .then((response) => response.json())
+      .then((categorias) => {
+        // Crear una tabla con las categorías y un botón de borrar para cada categoría
+        let tabla = "<table><thead><tr><th>Nombre</th><th>Descripción</th><th>Borrar</th></tr></thead><tbody>";
+
+        categorias.forEach((categoria) => {
+          tabla += `<tr><td>${categoria.nombre}</td><td>${categoria.descripcion}</td><td><button class="borrar-categoria" data-id="${categoria.id}">Borrar</button></td></tr>`;
+        });
+
+        tabla += "</tbody></table>";
+
+        // Mostrar la tabla en una ventana emergente
+        const ventana = window.open("", "Categorías", "width=600,height=400");
+        ventana.document.write(tabla);
+
+        // Agregar un evento click en los botones de borrar para enviar la solicitud de eliminación
+        ventana.document.querySelectorAll(".borrarcategorias").forEach((boton) => {
+          boton.addEventListener("click", function () {
+            const id = this.getAttribute("data-id");
+            const formData = new FormData();
+            formData.append("id", id);
+
+            fetch("procesosAdmin/borrarcategorias.php", {
+              method: "POST",
+              body: formData,
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.status === "success") {
+                  alert(data.message);
+                  // Recargar la página actual para actualizar la lista de categorías
+                  location.reload();
+                } else {
+                  alert(data.message);
+                }
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+                alert("Error.");
+              });
+          });
+        });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Error.");
+      });
+  });
+      document.getElementById("agrcategoriaform").addEventListener("submit", function (event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    fetch("procesosAdmin/agrcategorias.php", {
+        method: "POST",
+        body: formData,
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        if (data.status === "success") {
+            alert(data.message);
+            // También puedes reiniciar el formulario aquí si es necesario
+            //window.location.href = "perfilUser.php";
+        } else {
+            alert(data.message);
+        }
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+        alert("Error.");
+    });
+}); 
+    </script>
     <h2>Agregar nueva usuario</h2>
     <p>Aca podrás agregar un nuevo usuario</p>
     <form action="" method="post">
