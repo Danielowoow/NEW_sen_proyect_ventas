@@ -17,7 +17,7 @@
       <div class="container">
         <div class="forms-container">
           <div class="signin-signup">
-            <form action="procesos/login.php" method="post"class="sign-in-form"id="login-form">
+            <form action="procesos/loginadmin.php" method="post"class="sign-in-form"id="login-form">
               <h2 class="title">INICIAR SESIÓN</h2>
               <div class="input-field">
                 <i class="fas fa-user"></i>
@@ -66,7 +66,7 @@ document.getElementById("login-form").addEventListener("submit", function (event
     event.preventDefault();
     const formData = new FormData(event.target);
 
-    fetch("procesos/login.php", {
+    fetch("procesosAdmin/loginadmin.php", {
         method: "POST",
         body: formData,
     })
@@ -75,7 +75,7 @@ document.getElementById("login-form").addEventListener("submit", function (event
         if (data.status === "success") {
             alert(data.message);
             // También puedes reiniciar el formulario aquí si es necesario
-            window.location.href = "perfilUser.php";
+            window.location.href = "PanelAdmin.php";
         } else {
             alert(data.message);
         }
