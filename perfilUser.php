@@ -101,7 +101,7 @@ if (!is_array($usuario)) {
             <header class="header" id="header">                
     <nav class="header__nav container">
         <div class="header__toggle" id="header-toggle" >
-            <i class='bx bx-grid-alt'></i>
+            <i class='bx bx-menu'></i>
         </div >
         <div class="header__toggle" >
         <a href="./" class="header__logo">
