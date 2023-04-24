@@ -282,21 +282,96 @@ body.dark .switch::before {
   left: 20px;
 }
 
-.home {
-  position: absolute;
+
+.perfiladmin {
+    position: relative;
   top: 0;
-  top: 0;
-  left: 250px;
+  left: 0;
   height: 100vh;
-  width: calc(100% - 250px);
+  width: 100%;
   background-color: var(--body-color);
   transition: var(--tran-05);
 }
-.home .text {
-  font-size: 30px;
-  font-weight: 500;
-  color: var(--text-color);
-  padding: 12px 60px;
+.agregarproducto {
+    position: relative;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: var(--body-color);
+  transition: var(--tran-05);
+}
+.buscarproducto {
+    position: relative;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: var(--body-color);
+  transition: var(--tran-05);
+}
+.buscarproducto {
+    position: relative;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: var(--body-color);
+  transition: var(--tran-05);
+}
+.verproductos {
+    position: relative;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: var(--body-color);
+  transition: var(--tran-05);
+}
+.buscarusario {
+    position: relative;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: var(--body-color);
+  transition: var(--tran-05);
+}
+.verusario {
+    position: relative;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: var(--body-color);
+  transition: var(--tran-05);
+}
+.agregaradmin {
+    position: relative;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: var(--body-color);
+  transition: var(--tran-05);
+}
+.buscarusario {
+    position: relative;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: var(--body-color);
+  transition: var(--tran-05);
+}
+.buscarusario {
+    position: relative;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: var(--body-color);
+  transition: var(--tran-05);
 }
 
 .sidebar.close ~ .home {
