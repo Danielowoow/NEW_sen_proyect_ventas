@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/adminstyle.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
       rel="stylesheet"
@@ -314,7 +314,7 @@
   <?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $busqueda = $_POST['busqueda'];
-      $usuarios = buscarUsuario($busqueda);
+     // $usuarios = buscarUsuario($busqueda);
 
       if ($usuarios) {
         // Recorrer la lista de usuarios y mostrarlos en la tabla
@@ -371,7 +371,7 @@
     <tbody>
       <?php
         // Obtener la lista de usuarios
-        $usuarios = obtenerUsuarios();
+        //$usuarios = obtenerUsuarios();
         
         // Verificar si se encontraron usuarios
         if ($usuarios) {
@@ -411,6 +411,9 @@
 <section class="agregaradmin" >
   <h2>Agregar administradoraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</h2>
 </section>
+<script>
+  
+</script>
     <script src="js/index.js"></script>
   </body>
 </html>
