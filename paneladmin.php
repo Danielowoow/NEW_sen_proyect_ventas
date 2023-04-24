@@ -162,7 +162,8 @@ $admin_logged_in = mysqli_fetch_assoc($resultado);
         let tabla = "<table><thead><tr><th>Nombre</th><th>Descripción</th><th>Borrar</th></tr></thead><tbody>";
 
         categorias.forEach((categoria) => {
-          tabla += `<tr><td>${categoria.nombre}</td><td>${categoria.descripcion}</td><td><button class="borrar-categoria" data-id="${categoria.id}">Borrar</button></td></tr>`;
+          tabla += `<tr><td>${categoria.nombre}</td><td>${categoria.descripcion}</td><td><button class="borrarcategorias" data-id="${categoria.id}">Borrar</button></td></tr>`;
+
         });
 
         tabla += "</tbody></table>";
@@ -187,7 +188,10 @@ $admin_logged_in = mysqli_fetch_assoc($resultado);
                 if (data.status === "success") {
                   alert(data.message);
                   // Recargar la página actual para actualizar la lista de categorías
+                  ventana.close();
                   location.reload();
+                  ventana.location.reload();
+
                 } else {
                   alert(data.message);
                 }

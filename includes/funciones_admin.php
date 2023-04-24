@@ -30,14 +30,24 @@ function agregarCategoria($nombre, $descripcion) {
     $stmt->execute();
     $stmt->close();
   }
-function borrar_categoria($id_categoria) {
+  function borrarCategoria($id) {
     include '../db_conectar/conexion.php';
     global $conexion;
-    $stmt = $conexion->prepare("DELETE FROM categorias WHERE id = ?");
-    $stmt->bind_param("i", $id_categoria);
-    $stmt->execute();
-    $stmt->close();
+  
+    $consulta = "DELETE FROM categorias WHERE id = ?";
+    $sentencia = mysqli_prepare($conexion, $consulta);
+    mysqli_stmt_bind_param($sentencia, "i", $id);
+  
+    if (!mysqli_stmt_execute($sentencia)) {
+      die('Error en la consulta: ' . mysqli_error($conexion));
+    }
+  
+    mysqli_stmt_close($sentencia);
+    mysqli_close($conexion);
+  
+    return true;
   }
+  
   function obtenerTodasCategorias() {
     include '../db_conectar/conexion.php';
     global $conexion;

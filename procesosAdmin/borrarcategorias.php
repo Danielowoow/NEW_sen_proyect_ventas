@@ -1,27 +1,16 @@
 <?php
-session_start();
-if (!isset($_SESSION['admin_logged_in']) || !$_SESSION['admin_logged_in']) {
-    header("Location: loginadmin.php");
-    exit;
-}
 include "../db_conectar/conexion.php";
 include "../includes/funciones_admin.php";
+
 header('Content-Type: application/json');
-// Si se envió el formulario, agregar el producto
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $nombre = $_POST['nombre'];
-  $descripcion = $_POST['descripcion'];
+  $id = $_POST['id'];
 
-  if (agregarCategoria($nombre, $descripcion)) {
-    // Si se agregó el producto correctamente, redirigir a la página de productos
-    echo json_encode(['status' => 'success', 'message' => 'Categoría  no agregada.']);
-    exit;
+  if (borrarCategoria($id)) {
+    echo json_encode(['status' => 'success', 'message' => 'Categoría borrada exitosamente.']);
   } else {
-    echo json_encode(['status' => 'error', 'message' => 'Categoría agregada exitosamente.']);
-    exit;   
-    // Si hubo un error al agregar el producto, mostrar un mensaje de error
-
+    echo json_encode(['status' => 'error', 'message' => 'Error al borrar la categoría.']);
   }
 }
-
 ?>
