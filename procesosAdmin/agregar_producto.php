@@ -8,6 +8,7 @@ if (!isset($_SESSION['admin_logged_in']) || !$_SESSION['admin_logged_in']) {
     exit;
 }
 
+header('Content-Type: application/json');
 // Si se envió el formulario, agregar el producto
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nombre = $_POST['nombre'];
@@ -22,11 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (agregar_producto($nombre, $descripcion, $precio, $modelo, $marca, $stock, $imagen, $categoria)) {
         // Si se agregó el producto correctamente, redirigir a la página de productos
-        header("Location: admin.php");
-        exit();
+        echo json_encode(['status' => 'success', 'message' => 'Producto agregado correctamente.']);
+
     } else {
-        // Si hubo un error al agregar el producto, mostrar un mensaje de error
-        $mensaje_error = "Error al agregar el producto.";
+        echo json_encode(['status' => 'error', 'message' => 'Producto no agregado.']);
+        exit;
     }
 }
 

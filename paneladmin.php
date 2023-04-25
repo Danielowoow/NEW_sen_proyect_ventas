@@ -238,7 +238,7 @@ tabla += "</tbody></table>";
   </div>
     <h2>Agregar producto</h2>
   
-    <form action="procesosAdmin/agregar_producto.php" method="post" enctype="multipart/form-data">
+    <form action="procesosAdmin/agregar_producto.php" method="post" enctype="multipart/form-data" id="agregarproductoform">
   <label for="nombre">Nombre del producto:</label>
   <input type="text" id="nombre" name="nombre" required>
 
@@ -270,6 +270,31 @@ tabla += "</tbody></table>";
 
 
   <button type="submit" name="agregar_producto">Agregar producto</button>
+  <script>
+    document.getElementById("agregarproductoform").addEventListener("submit", function (event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    fetch("procesosAdmin/agregar_producto.php", {
+        method: "POST",
+        body: formData,
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        if (data.status === "success") {
+            alert(data.message);
+            // También puedes reiniciar el formulario aquí si es necesario
+            //window.location.href = "perfilUser.php";
+        } else {
+            alert(data.message);
+        }
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+        alert("Error.");
+    });
+}); 
+  </script>
 </form>
 <style>
   .agregarproducto {
