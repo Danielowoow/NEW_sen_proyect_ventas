@@ -67,23 +67,76 @@ function agregarCategoria($nombre, $descripcion) {
   
     return $categorias;
   }
-  function obtenerCategoria($id) {
+  
+  function agregar_producto($nombre, $descripcion, $precio, $modelo, $marca, $stock, $imagen, $categoria_id) {
+    // Conectar a la base de datos
     include '../db_conectar/conexion.php';
-    global $conexion;
-  
-    $consulta = "SELECT * FROM categorias WHERE id = ?";
-    $sentencia = mysqli_prepare($conexion, $consulta);
-    mysqli_stmt_bind_param($sentencia, "i", $id);
-  
-    if (!mysqli_stmt_execute($sentencia)) {
-        die('Error en la consulta: ' . mysqli_error($conexion));
+
+    // Escapar los valores para evitar inyecciones SQL
+    $nombre = mysqli_real_escape_string($conexion, $nombre);
+    $descripcion = mysqli_real_escape_string($conexion, $descripcion);
+    $precio = mysqli_real_escape_string($conexion, $precio);
+    $modelo = mysqli_real_escape_string($conexion, $modelo);
+    $marca = mysqli_real_escape_string($conexion, $marca);
+    $stock = mysqli_real_escape_string($conexion, $stock);
+    $categoria_id = mysqli_real_escape_string($conexion, $categoria_id);
+
+    // Guardar la imagen en el servidor y obtener la ruta de la imagen
+    $ruta_imagen = '';
+    if ($imagen['error'] === UPLOAD_ERR_OK) {
+        $nombre_imagen = uniqid() . '_' . $imagen['name'];
+        $ruta_imagen = 'imagenes/productos/' . $nombre_imagen;
+        $ruta_absoluta = 'C:\xampp\htdocs\NEW_sen_proyect_ventas\\' . $ruta_imagen;
+        move_uploaded_file($imagen['tmp_name'], $ruta_absoluta);
     }
-  
-    $resultado = mysqli_stmt_get_result($sentencia);
-    $categoria = mysqli_fetch_assoc($resultado);
-  
-    mysqli_stmt_close($sentencia);
-    mysqli_close($conexion);
-  
-    return $categoria;
+
+    // Insertar el producto en la base de datos
+    $consulta = "INSERT INTO productos (nombre, descripcion, precio, modelo, marca, stock, imagen, categoria_id) VALUES ('$nombre', '$descripcion', '$precio', '$modelo', '$marca', '$stock', '$ruta_imagen', '$categoria_id')";
+
+    if (mysqli_query($conexion, $consulta)) {
+        // Si la consulta fue exitosa, devolver true
+        return true;
+    } else {
+        // Si hubo un error en la consulta, mostrar el mensaje de error y devolver false
+        echo "Error al agregar producto: " . mysqli_error($conexion);
+        return false;
+    }
+}
+function buscarProducto($nombre, $precioMin, $precioMax, $categoria) {
+  include 'conexion.php';
+  global $conexion;
+
+  $nombre = mysqli_real_escape_string($conexion, $nombre);
+  $precioMin = mysqli_real_escape_string($conexion, $precioMin);
+  $precioMax = mysqli_real_escape_string($conexion, $precioMax);
+  $categoria = mysqli_real_escape_string($conexion, $categoria);
+
+  $consulta = "SELECT productos.id, productos.nombre, productos.descripcion, productos.precio, productos.imagen, categorias.nombre AS categoria_nombre FROM productos JOIN categorias ON productos.categoria_id = categorias.id WHERE productos.nombre LIKE '%$nombre%'";
+
+  if (!empty($precioMin)) {
+      $consulta .= " AND productos.precio >= $precioMin";
+  }
+
+  if (!empty($precioMax)) {
+      $consulta .= " AND productos.precio <= $precioMax";
+  }
+
+  if (!empty($categoria)) {
+      $consulta .= " AND productos.categoria_id = $categoria";
+  }
+
+  $consulta .= " ORDER BY productos.precio ASC";
+
+  $resultado = mysqli_query($conexion, $consulta);
+
+  if (!$resultado) {
+      die('Error en la consulta: ' . mysqli_error($conexion));
+  }
+
+  $productos = array();
+  while ($producto = mysqli_fetch_assoc($resultado)) {
+      $productos[] = $producto;
+  }
+
+  return $productos;
 }

@@ -343,71 +343,7 @@ body.dark .switch::before {
 
 
 
-  .agregarproducto {
-    position: relative;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100%;
-    background-color: var(--body-color);
-    transition: var(--tran-05);
-    max-width: 85%;
-    margin: 0 auto;
-    padding: 1.7rem;
-    background-color: #fff;
-    border-radius: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .agregarproducto h2 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-  }
-  
-  .agregarproducto form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .agregarproducto label {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-  }
-  
-  .agregarproducto input[type="text"],
-  .agregarproducto textarea,
-  .agregarproducto select {
-    font-size: 1rem;
-    padding: 0.5rem;
-    border-radius: 5px;
-    border: none;
-    margin-bottom: 1rem;
-  }
-  
-  .agregarproducto input[type="file"] {
-    margin-bottom: 1rem;
-  }
-  
-  .agregarproducto button[type="submit"] {
-    font-size: 1.2rem;
-    padding: 0.5rem;
-    border-radius: 5px;
-    border: none;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-  }
-  
-  .agregarproducto button[type="submit"]:hover {
-    background-color: #0069d9;
-  }
-  .agregarcategoria {
-    width: 50%;
-    float: left;
-  }
-  .agregarcategoria {
-    margin-right: 1rem;
-  }
+
   
 
 

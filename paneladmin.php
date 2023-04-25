@@ -238,31 +238,107 @@ tabla += "</tbody></table>";
   </div>
     <h2>Agregar producto</h2>
   
-    <form action="agregar_producto.php" method="post" enctype="multipart/form-data">
+    <form action="procesosAdmin/agregar_producto.php" method="post" enctype="multipart/form-data">
+  <label for="nombre">Nombre del producto:</label>
+  <input type="text" id="nombre" name="nombre" required>
 
-      <label for="nombre">Nombre del producto:</label>
-      <input type="text" id="nombre" name="nombre" required>
+  <label for="descripcion">Descripción:</label>
+  <textarea id="descripcion" name="descripcion"></textarea>
 
-      <label for="descripcion">Descripción:</label>
-      <textarea id="descripcion" name="descripcion"></textarea>
-
-      <label for="precio">Precio:</label>
+  <label for="precio">Precio:</label>
   <input type="text" id="precio" name="precio" required pattern="^\d{1,8}(\.\d{2})?$" title="Por favor, ingrese un precio válido con hasta 8 dígitos enteros y 2 dígitos decimales">
 
-      <label for="imagen">Imagen:</label>
-      <input type="file" name="imagen">
+  <label for="modelo">Modelo:</label>
+  <input type="text" id="modelo" name="modelo" required>
 
-      <label for="categoria">Categoría:</label>
-      <select name="categoria_id" id="categoria" class="form-control">
-    <?php $categorias = obtenerTodasCategorias(); ?>
-    <?php foreach ($categorias as $categoria): ?>
-        <option value="<?php echo $categoria['id']; ?>"<?php if ($categoria['id'] == $producto['categoria_id']) { echo ' selected'; } ?>><?php echo htmlspecialchars($categoria['nombre']); ?></option>
-    <?php endforeach; ?>
+  <label for="marca">Marca:</label>
+  <input type="text" id="marca" name="marca" required>
+
+  <label for="stock">Stock:</label>
+  <input type="number" id="stock" name="stock" required>
+
+  <label for="imagen">Imagen:</label>
+  <input type="file" name="imagen">
+
+  <label for="categoria">Categoría:</label>
+  <select name="categoria_id" id="categoria" class="form-control">
+  <?php $categorias = obtenerTodasCategorias(); ?>
+  <?php foreach ($categorias as $categoria): ?>
+    <option value="<?php echo $categoria['id']; ?>"><?php echo htmlspecialchars($categoria['nombre']); ?></option>
+  <?php endforeach; ?>
 </select>
 
-  <button type="submit" name="agregar_producto">Agregar producto</button>
 
-    </form>
+  <button type="submit" name="agregar_producto">Agregar producto</button>
+</form>
+<style>
+  .agregarproducto {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: var(--body-color);
+    transition: var(--tran-05);
+    max-width: 85%;
+    margin: 0 auto;
+    padding: 1.7rem;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .agregarproducto h2 {
+    font-size: 1rem;
+    margin-bottom: 0.1rem;
+  }
+  
+  .agregarproducto form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .agregarproducto label {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .agregarproducto input[type="text"],
+  .agregarproducto textarea,
+  .agregarproducto select {
+    font-size: 0.8rem;
+    padding: 0.2rem;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 0.1rem;
+  }
+  
+  .agregarproducto input[type="file"] {
+    margin-bottom: 0.1rem;
+  }
+  
+  .agregarproducto button[type="submit"] {
+    font-size: 1.rem;
+    padding: 0.1rem;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .agregarproducto button[type="submit"]:hover {
+    background-color: #0069d9;
+  }
+  .agregarcategoria {
+    width: 40%;
+    float: left;
+  }
+  .agregarcategoria {
+    margin-right: 1rem;
+    margin-top: 0rem;
+  }
+</style>
 
     
   </section>
@@ -283,11 +359,12 @@ tabla += "</tbody></table>";
 
         <label for="categoria">Categoría:</label>
         <select name="categoria_id" id="categoria" class="form-control">
-                    <?php //$categorias = obtenerTodasCategorias(); ?>
-                    <?php //foreach ($categorias as $categoria): ?>
-                        <option value="<?php// echo $categoria['id']; ?>"<?php //if ($categoria['id'] == $producto['categoria_id']) { echo ' selected'; } ?>><?php// echo htmlspecialchars($categoria['nombre']); ?></option>
-                    <?php //endforeach; ?>
-                </select>
+  <?php $categorias = obtenerTodasCategorias(); ?>
+  <?php foreach ($categorias as $categoria): ?>
+    <option value="<?php echo $categoria['id']; ?>"<?php if ($categoria['id'] == $producto['categoria_id']) { echo ' selected'; } ?>><?php echo htmlspecialchars($categoria['nombre']); ?></option>
+  <?php endforeach; ?>
+</select>
+
 
 
           <button type="submit" id="buscarProductoBtn">Buscar producto</button>
