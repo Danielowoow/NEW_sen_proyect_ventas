@@ -67,3 +67,23 @@ function agregarCategoria($nombre, $descripcion) {
   
     return $categorias;
   }
+  function obtenerCategoria($id) {
+    include '../db_conectar/conexion.php';
+    global $conexion;
+  
+    $consulta = "SELECT * FROM categorias WHERE id = ?";
+    $sentencia = mysqli_prepare($conexion, $consulta);
+    mysqli_stmt_bind_param($sentencia, "i", $id);
+  
+    if (!mysqli_stmt_execute($sentencia)) {
+        die('Error en la consulta: ' . mysqli_error($conexion));
+    }
+  
+    $resultado = mysqli_stmt_get_result($sentencia);
+    $categoria = mysqli_fetch_assoc($resultado);
+  
+    mysqli_stmt_close($sentencia);
+    mysqli_close($conexion);
+  
+    return $categoria;
+}

@@ -10,8 +10,7 @@ if (!isset($_SESSION['admin_logged_in']) || !$_SESSION['admin_logged_in']) {
 $admin_id = $_SESSION['id_usuario'];
 $query = "SELECT * FROM administradores WHERE id = '$admin_id'";
 $resultado = mysqli_query($conexion, $query);
-$admin_logged_in = mysqli_fetch_assoc($resultado);
-?>
+$admin_logged_in = mysqli_fetch_assoc($resultado); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -159,14 +158,13 @@ $admin_logged_in = mysqli_fetch_assoc($resultado);
       .then((response) => response.json())
       .then((categorias) => {
         // Crear una tabla con las categorías y un botón de borrar para cada categoría
-        let tabla = "<table><thead><tr><th>Nombre</th><th>Descripción</th><th>Borrar</th></tr></thead><tbody>";
+        let tabla = "<table style='border-collapse: collapse; margin: 20px;'><thead><tr style='background-color: #ddd;'><th style='border: 1px solid #ddd; padding: 10px;'>Nombre</th><th style='border: 1px solid #ddd; padding: 10px;'>Descripción</th><th style='border: 1px solid #ddd; padding: 10px;'>Borrar</th></tr></thead><tbody>";
 
-        categorias.forEach((categoria) => {
-          tabla += `<tr><td>${categoria.nombre}</td><td>${categoria.descripcion}</td><td><button class="borrarcategorias" data-id="${categoria.id}">Borrar</button></td></tr>`;
+categorias.forEach((categoria) => {
+  tabla += `<tr style='border: 1px solid #ddd;'><td style='border: 1px solid #ddd; padding: 10px;'>${categoria.nombre}</td><td style='border: 1px solid #ddd; padding: 10px;'>${categoria.descripcion}</td><td style='border: 1px solid #ddd; padding: 10px;'><button style='background-color: red; color: white; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer;' class="borrarcategorias" data-id="${categoria.id}">Borrar</button></td></tr>`;
+});
 
-        });
-
-        tabla += "</tbody></table>";
+tabla += "</tbody></table>";
 
         // Mostrar la tabla en una ventana emergente
         const ventana = window.open("", "Categorías", "width=600,height=400");
@@ -239,6 +237,7 @@ $admin_logged_in = mysqli_fetch_assoc($resultado);
     </form>
   </div>
     <h2>Agregar producto</h2>
+  
     <form action="agregar_producto.php" method="post" enctype="multipart/form-data">
 
       <label for="nombre">Nombre del producto:</label>
@@ -254,12 +253,12 @@ $admin_logged_in = mysqli_fetch_assoc($resultado);
       <input type="file" name="imagen">
 
       <label for="categoria">Categoría:</label>
-                <select name="categoria_id" id="categoria" class="form-control">
-                    <?php //$categorias = obtenerTodasCategorias(); ?>
-                    <?php //foreach ($categorias as $categoria): ?>
-                        <option value="<?php// echo $categoria['id']; ?>"<?php //if ($categoria['id'] == $producto['categoria_id']) { echo ' selected'; } ?>><?php// echo htmlspecialchars($categoria['nombre']); ?></option>
-                    <?php //endforeach; ?>
-                </select>
+      <select name="categoria_id" id="categoria" class="form-control">
+    <?php $categorias = obtenerTodasCategorias(); ?>
+    <?php foreach ($categorias as $categoria): ?>
+        <option value="<?php echo $categoria['id']; ?>"<?php if ($categoria['id'] == $producto['categoria_id']) { echo ' selected'; } ?>><?php echo htmlspecialchars($categoria['nombre']); ?></option>
+    <?php endforeach; ?>
+</select>
 
   <button type="submit" name="agregar_producto">Agregar producto</button>
 
