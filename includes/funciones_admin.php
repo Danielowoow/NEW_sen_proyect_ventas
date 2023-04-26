@@ -144,3 +144,24 @@ function buscarProductoT($nombre, $precioMin, $precioMax, $categoria_id) {
 
     return $productos;
 }
+
+function obtenerTodosProductos() {
+    global $conexion;
+  
+    $consulta = "SELECT productos.id, productos.nombre, productos.descripcion, productos.precio, productos.imagen, categorias.nombre AS categoria_nombre FROM productos JOIN categorias ON productos.categoria_id = categorias.id ORDER BY productos.nombre ASC";
+  
+    $resultado = mysqli_query($conexion, $consulta);
+  
+    if (!$resultado) {
+        die('Error en la consulta: ' . mysqli_error($conexion));
+    }
+  
+    $productos = array();
+    while ($producto = mysqli_fetch_assoc($resultado)) {
+        $productos[] = $producto;
+    }
+  
+    return $productos;
+}
+
+  

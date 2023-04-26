@@ -20,6 +20,9 @@ $admin_logged_in = mysqli_fetch_assoc($resultado); ?>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/adminindex.css" />
   <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
+
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
@@ -375,208 +378,152 @@ $admin_logged_in = mysqli_fetch_assoc($resultado); ?>
     <div class="buscar-forms">
       <div class="buscar-producto">
         <h2>Buscar producto</h2>
-        <form action=""method="post">
-          <label for="nombre">Nombre del producto:</label>
-          <input type="text" id="nombre" name="nombre">
-
-          <label for="precioMin">Precio mínimo:</label>
-          <input type="number" id="precioMin" name="precioMin" step="0.01" min="0">
-
-          <label for="precioMax">Precio máximo:</label>
-          <input type="number" id="precioMax" name="precioMax" step="0.01" min="0">
-
-          <label for="categoria">Categoría:</label>
-          <select name="categoria_id" id="categoria" class="form-control">
-            <?php $categorias = obtenerTodasCategorias(); ?>
-            <?php foreach ($categorias as $categoria) : ?>
-              <option value="<?php echo $categoria['id']; ?>"><?php echo htmlspecialchars($categoria['nombre']); ?></option>
-            <?php endforeach; ?>
-          </select>
-
-          <button type="submit" id="buscarProductoBtn">Buscar producto</button>
+        <form>
+          <label for="buscarProducto">Nombre del producto:</label>
+          <input type="text" id="buscarProducto" name="buscarProducto">
+          <button type="submit" onclick="window.location.href='otra_pagina.html'">Buscar producto</button>
         </form>
       </div>
-      <!--<table>
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Precio</th>
-      <th>Categoría</th>
-      <th>Imagen</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php/*
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
-      $precioMin = isset($_POST['precioMin']) ? $_POST['precioMin'] : '';
-      $precioMax = isset($_POST['precioMax']) ? $_POST['precioMax'] : '';
-      $categoria_id = isset($_POST['categoria_id']) ? $_POST['categoria_id'] : '';
-
-      
-      $productos = buscarProductoT($nombre, $precioMin, $precioMax, $categoria_id);
-
-      if ($productos) {
-        foreach ($productos as $producto) {
-          echo "<tr>";
-          echo "<td>" . htmlspecialchars($producto['nombre']) . "</td>";
-          echo "<td>" . htmlspecialchars($producto['precio']) . "</td>";
-          echo "<td>" . htmlspecialchars($producto['categoria_nombre']) . "</td>";
-          echo "<td>";
-          if (!empty($producto['imagen'])) {
-            echo '<img src="../' . htmlspecialchars($producto['imagen']) . '" alt="' . htmlspecialchars($producto['nombre']) . '" style="max-width: 100px; max-height: 100px;">';
-          } else {
-            echo '<p>No hay imagen disponible</p>';
-          }
-          echo "</td>";
-          echo "<td>";
-          echo "<form action='editar_producto.php' method='post'>";
-          echo "<input type='hidden' name='id' value='{$producto['id']}'>";
-          echo "<button type='submit' onclick='return confirm(\"¿Está seguro de editar este producto?\");'><i class='bi bi-pencil'></i></button>";
-          echo "</form>";
-          echo "<form action='eliminar_producto.php' method='post'>";
-          echo "<input type='hidden' name='id' value='{$producto['id']}'>";
-          echo "<button type='submit' onclick'confirm(\"¿Está seguro de eliminar este producto?\");'><i class='bi bi-trash'></i></button>";
-          echo "</form>";
-          echo "</td>";
-          echo "</tr>";
-          }
-          } else {
-          echo "<tr><td colspan='5'>No se encontraron productos.</td></tr>";
-          }
-          }
-          
-          */?>
-          
-            </tbody>
-          </table>-->
       <div class="buscar-usuario">
         <h2>Buscar usuario</h2>
-        <form action="buscar_usuario.php" method="post" id="buscarUsuarioForm">
-          <label for="busqueda">Ingresa el correo electrónico o el DNI del usuario:</label>
-          <input type="text" id="busqueda" name="busqueda" required>
-
-          <button type="submit" id="buscarUsuarioBtn">Buscar usuario</button>
+        <form>
+          <label for="buscarUsuario">Nombre del usuario:</label>
+          <input type="text" id="buscarUsuario" name="buscarUsuario">
+          <button type="submit" onclick="window.location.href='otra_pagina.html'">Buscar usuario</button>
         </form>
       </div>
-
     </div>
-    <style>
-      #buscarUserProduct {
-        position: relative;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        width: 100%;
-        background-color: var(--body-color);
-        transition: var(--tran-05);
-        max-width: 85%;
-        margin: 0 auto;
-        padding: 1.7rem;
-      }
-
-      .buscar-forms {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-      }
-
-      .buscar-producto,
-      .buscar-usuario {
-        width: 48%;
-        background-color: #fff;
-        border-radius: 15px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        padding: 1.7rem;
-        margin-bottom: 2rem;
-      }
-
-      .buscar-producto h2,
-      .buscar-usuario h2 {
-        font-size: 2rem;
-        margin-bottom: 2rem;
-      }
-
-      .buscar-producto form,
-      .buscar-usuario form {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .buscar-producto label,
-      .buscar-usuario label {
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
-      }
-
-      .buscar-producto input[type="text"],
-      .buscar-producto input[type="number"],
-      .buscar-producto select,
-      .buscar-usuario input[type="text"] {
-        font-size: 1rem;
-        padding: 0.5rem;
-        border-radius: 5px;
-        border: none;
-        margin-bottom: 1rem;
-      }
-
-      .buscar-producto button[type="submit"],
-      .buscar-usuario button[type="submit"] {
-        font-size: 1.2rem;
-        padding: 0.5rem;
-        border-radius: 5px;
-        border: none;
-        background-color: #007bff;
-        color: #fff;
-        cursor: pointer;
-      }
-
-      .buscar-producto button[type="submit"]:hover,
-      .buscar-usuario button[type="submit"]:hover {
-        background-color: #0069d9;
-      }
-    </style>
-    <script>
-      $(document).ready(function() {
-        $("#buscarProductoBtn").on("click", function(event) {
-          event.preventDefault();
-
-          let nombre = $("#nombre").val();
-          let precioMin = $("#precioMin").val();
-          let precioMax = $("#precioMax").val();
-          let categoria_id = $("#categoria").val();
-
-          $.ajax({
-            url: "procesosAdmin/vistaBuscarProducto.php",
-            method: "POST",
-            data: {
-              nombre: nombre,
-              precioMin: precioMin,
-              precioMax: precioMax,
-              categoria_id: categoria_id,
-            },
-            success: function(data) {
-              $("#resultados").html(data);
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-              console.error("Error en la petición AJAX: ", textStatus, errorThrown);
-            }
-          });
-        });
-      });
-    </script>
+    <div id="resultados"></div>
   </section>
-  <section id="ver-productos" class="verproductos">
-    <div></div>
+
+  <style>
+    #buscarUserProduct {
+      height: 100vh;
+      width: 100%;
+      background-color: var(--body-color);
+      transition: var(--tran-05);
+      padding: 7rem;
+    }
+
+    .buscar-forms {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .buscar-producto,
+    .buscar-usuario {
+      width: 45%;
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .buscar-producto h2,
+    .buscar-usuario h2 {
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .buscar-producto form,
+    .buscar-usuario form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .buscar-producto label,
+    .buscar-usuario label {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .buscar-producto input[type="text"],
+    .buscar-producto input[type="number"],
+    .buscar-producto select,
+    .buscar-usuario input[type="text"] {
+      font-size: 1.8rem;
+      padding: 1rem;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 2rem;
+      width: 100%;
+      max-width: 30rem;
+    }
+
+    .buscar-producto button[type="submit"],
+    .buscar-usuario button[type="submit"] {
+      font-size: 2.5rem;
+      padding: 1.5rem 2rem;
+      border-radius: 5px;
+      border: none;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+      width: 100%;
+      max-width: 30rem;
+    }
+
+    .buscar-producto button[type="submit"]:hover,
+    .buscar-usuario button[type="submit"]:hover {
+      background-color: #0069d9;
+    }
+  </style>
+
+
+
+<section id="ver-productos" class="verproductos">
+  <div>
     <h2>Ver productos o usuarios</h2>
     <button id="verProductosBtn">Ver productos</button>
     <button id="verUsuariosBtn">Ver usuarios</button>
-    <div id="resultadosdever">
-      <!-- Aquí se mostrarán los productos -->
+  </div>
+  <div id="resultadosdever">
+      <!-- Aquí se mostrarán los productos o usuarios -->
     </div>
-    </div>
-  </section>
+  <script>
+    function cargarProductos() {
+      $.ajax({
+        type: 'GET',
+        url: 'procesosAdmin/verProductos.php',
+        dataType: 'html',
+        encode: true
+      })
+      .done(function(data) {
+        $('#resultadosdever').html(data);
+      });
+    }
+
+    $('#verProductosBtn').click(function(event) {
+      event.preventDefault();
+      cargarProductos();
+    });
+
+    function cargarUsuarios() {
+      $.ajax({
+        type: 'GET',
+        url: 'procesosAdmin/verUsuarios.php',
+        dataType: 'html',
+        encode: true
+      })
+      .done(function(data) {
+        $('#resultadosdever').html(data);
+      });
+    }
+
+    $('#verUsuariosBtn').click(function(event) {
+      event.preventDefault();
+      cargarUsuarios();
+    });
+  </script>
+</section>
 
 
 
