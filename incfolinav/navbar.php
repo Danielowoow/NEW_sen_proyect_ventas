@@ -2,7 +2,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-navbar">
     <div class="container">
-        <a class="navbar-brand" href="./">Tienda en línea</a>
+        <a class="navbar-brand" href="./">LINEA</a>
         <input type="checkbox" id="navbar-toggle" class="d-none">
         <div class="navbar-collapse">
             <ul class="navbar-nav me-auto">
@@ -29,6 +29,7 @@
                         <li><a class="dropdown-item" href="panelAdmin.php">ADMIN</a></li>
                         <li><a class="dropdown-item" href="salir.php">CERRAR SESION</a></li>
                     </ul>
+
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="productos/carrito.php">
