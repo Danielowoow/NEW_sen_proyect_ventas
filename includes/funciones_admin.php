@@ -144,4 +144,3 @@ function buscarProductoT($nombre, $precioMin, $precioMax, $categoria_id) {
 
     return $productos;
 }
-

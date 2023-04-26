@@ -110,5 +110,3 @@ function cambiarContra($id_usuario, $hashed_password) {
         return false;
     }
 }
-
-
