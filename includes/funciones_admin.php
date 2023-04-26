@@ -102,41 +102,46 @@ function agregarCategoria($nombre, $descripcion) {
         return false;
     }
 }
-function buscarProducto($nombre, $precioMin, $precioMax, $categoria) {
-  include 'conexion.php';
-  global $conexion;
+function buscarProductoT($nombre, $precioMin, $precioMax, $categoria_id) {
 
-  $nombre = mysqli_real_escape_string($conexion, $nombre);
-  $precioMin = mysqli_real_escape_string($conexion, $precioMin);
-  $precioMax = mysqli_real_escape_string($conexion, $precioMax);
-  $categoria = mysqli_real_escape_string($conexion, $categoria);
+    global $conexion;
 
-  $consulta = "SELECT productos.id, productos.nombre, productos.descripcion, productos.precio, productos.imagen, categorias.nombre AS categoria_nombre FROM productos JOIN categorias ON productos.categoria_id = categorias.id WHERE productos.nombre LIKE '%$nombre%'";
+    $nombre = mysqli_real_escape_string($conexion, $nombre);
+    $precioMin = mysqli_real_escape_string($conexion, $precioMin);
+    $precioMax = mysqli_real_escape_string($conexion, $precioMax);
+    $categoria_id = mysqli_real_escape_string($conexion, $categoria_id);
 
-  if (!empty($precioMin)) {
-      $consulta .= " AND productos.precio >= $precioMin";
-  }
+    $consulta = "SELECT productos.id, productos.nombre, productos.descripcion, productos.precio, productos.imagen, categorias.nombre AS categoria_nombre FROM productos JOIN categorias ON productos.categoria_id = categorias.id WHERE productos.nombre LIKE '%$nombre%'";
 
-  if (!empty($precioMax)) {
-      $consulta .= " AND productos.precio <= $precioMax";
-  }
+    if (!empty($precioMin)) {
+        $consulta .= " AND productos.precio >= $precioMin";
+    }
 
-  if (!empty($categoria)) {
-      $consulta .= " AND productos.categoria_id = $categoria";
-  }
+    if (!empty($precioMax)) {
+        $consulta .= " AND productos.precio <= $precioMax";
+    }
 
-  $consulta .= " ORDER BY productos.precio ASC";
+    if (!empty($categoria_id)) {
+        $consulta .= " AND productos.categoria_id = $categoria_id";
+    }
 
-  $resultado = mysqli_query($conexion, $consulta);
+    $consulta .= " ORDER BY productos.precio ASC";
 
-  if (!$resultado) {
-      die('Error en la consulta: ' . mysqli_error($conexion));
-  }
+    $resultado = mysqli_query($conexion, $consulta);
 
-  $productos = array();
-  while ($producto = mysqli_fetch_assoc($resultado)) {
-      $productos[] = $producto;
-  }
+    if (!$resultado) {
+        die('Error en la consulta: ' . mysqli_error($conexion));
+    }
 
-  return $productos;
+    $productos = array();
+    while ($producto = mysqli_fetch_assoc($resultado)) {
+        // Verificar si la imagen está vacía
+        if (empty($producto['imagen'])) {
+            $producto['imagen'] = null;
+        }
+        $productos[] = $producto;
+    }
+
+    return $productos;
 }
+

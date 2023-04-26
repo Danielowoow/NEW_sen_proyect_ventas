@@ -118,3 +118,32 @@ CREATE TABLE detalles_pedido (
 );  
 -- --------------------------------------------------------
 
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE conversaciones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user1_id INT,
+    user2_id INT,
+    FOREIGN KEY (user1_id) REFERENCES usuarios(id),
+    FOREIGN KEY (user2_id) REFERENCES usuarios(id)
+);
+
+CREATE TABLE mensajes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    conversacion_id INT,
+    remitente_id INT,
+    contenido TEXT,
+    fecha_enviado TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (conversacion_id) REFERENCES conversaciones(id),
+    FOREIGN KEY (remitente_id) REFERENCES usuarios(id)
+);
