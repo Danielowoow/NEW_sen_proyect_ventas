@@ -26,7 +26,7 @@
                         <li><a class="dropdown-item" href="loginregis.php">Iniciar sesión/Registrarte</a></li>
                         <li><a class="dropdown-item" href="perfilUser.php">Perfil</a></li>
                         <li><a class="dropdown-item" href="usuarios/mis_pedidos.php">Mis pedidos</a></li>
-                        <li><a class="dropdown-item" href=../SEN_proyect_ventas/admin/admin.php>ADMIN</a></li>
+                        <li><a class="dropdown-item" href="panelAdmin.php">ADMIN</a></li>
                         <li><a class="dropdown-item" href="salir.php">CERRAR SESION</a></li>
                     </ul>
                 </li>
